@@ -1,0 +1,150 @@
+@media screen and (max-width:900px){
+
+    /*---------- Header component css-------------*/
+
+
+    .search_section{
+        padding: 0;
+        height: auto;
+    }
+
+    .search_input_div_input{
+        display: none;
+    }
+
+    .search_input_div{
+        background-color: transparent;
+    }
+
+    .categories{
+        flex-direction: column;
+        row-gap: 20px;
+        padding: 20px;
+        height: auto;
+        
+    }
+
+
+    .search-input{
+        border: none;
+        padding: 0;
+    }
+
+    .account-cart-container span{
+        display: none;
+    }
+
+    .categories-container{
+        display: none;
+        transition-property: display;
+        transition-duration: 3s;
+        position: absolute;
+        z-index: 2;
+        background: white;
+        width: 90vw;
+    }
+
+    .hamburger-container{
+        display: block;
+    }
+
+    .header-container{
+        padding: 10px;
+    }
+
+    .cross{
+        display: block;
+    }
+
+    .icon{
+        display: block !important;
+    }
+
+    /* ---- shop by age ------- */
+    
+        
+    
+
+    /* -------- Category component style-------------- */
+
+    .Category-container img{
+        width: 100%;
+    }
+
+    .Category-container{
+     display: flex;
+     flex-direction: column;
+    }
+
+    /* -------- Review Container------- */
+
+
+
+    .custom-card{
+        min-width: 75vw;
+    }
+
+    /* ---------Product components style-------- */
+
+    .product{
+        grid-template-columns: none;
+    }
+
+    .filter-container{
+        position: absolute;
+        z-index: 2;
+        background: white;
+        width: 90vw;
+        display: none;
+    }
+
+
+    /* ------- filter-product components style-------- */
+
+    .filter-text-container{
+                display: flex;
+    }
+
+    .Active{
+        
+        grid-template-columns: 45vw 45vw; 
+        justify-content: space-around; 
+        width: 100vw;
+       
+    }
+
+    /* ------- Product Cart components style ------- */
+    .Car{
+        grid-template-columns: 45vw 45vw;
+    }
+
+    .product-item span{
+        font-size: 12px;
+    }
+}
+
+
+@media screen and (min-width:651px) and (max-width:900px){
+    .review-card-container{
+        width:80vw
+    }
+}
+
+@media screen and (max-width:650px){
+    .review-card-container{
+    width: 85vw;
+    }
+
+    .age-image-container{
+        flex-direction: column !important;
+        row-gap: 20px;
+    }
+}
+
+@media screen and (min-width:651px) and (max-width:1064px){
+    .age-image-container{
+        display: grid !important;
+        grid-template-columns: 40% 40%;
+        row-gap: 20px;
+    }
+}
