@@ -2,10 +2,17 @@
 
     /*---------- Header component css-------------*/
 
+    .y-gap{
+        justify-content: space-between;
+    }
 
     .search_section{
         padding: 0;
         height: auto;
+    }
+
+    .header-container img {
+        height: 50px;
     }
 
     .search_input_div_input{
@@ -21,6 +28,7 @@
         row-gap: 20px;
         padding: 20px;
         height: auto;
+        margin-top: 40px;
         
     }
 
@@ -32,6 +40,14 @@
 
     .account-cart-container span{
         display: none;
+    }
+
+    .dropdown-product-list{
+        width: 100%;
+        left: 0;
+        top: 40px;
+        margin-top: 0;
+        height: 100%;
     }
 
     .categories-container{
@@ -74,6 +90,71 @@
     .Category-container{
      display: flex;
      flex-direction: column;
+    }
+
+    .shop-by-Category-container{
+                display: grid;
+                grid-template-columns: 40% 40%;
+                justify-content: center;
+                row-gap: 20px;
+                column-gap: 20px;
+    }
+
+    .shop-by-Category-container div{
+        border-radius: 0;
+    }
+
+    .accessories{
+        color: white;
+        background: linear-gradient(#e36ba2,#d8327c) !important;
+    }
+
+    .toys{
+        color: white;
+        background: linear-gradient(#5f4e85,#331277) !important;
+    }
+
+    .diapers{
+        color: white;
+        background:   linear-gradient(#7dbb44,#57951e) !important;
+    }
+    .jacket{
+        color: white;
+        background:  linear-gradient(#71dcc9,#19a78f) !important;
+    }
+
+    .stroller{
+        color: white;
+        background:  linear-gradient(#ed782f,#ad5a28) !important;
+        
+    }
+    .cot{
+        background: linear-gradient(#f3bc5b,#b57d1c) !important;
+        color: white;
+    }
+
+    /* ------ Bestseller components -------*/
+
+    .col-md-4 {
+        width: 50%;
+    }
+
+    .add-to-cart-dropdown-container{
+        left: auto;
+        bottom: 0;
+    right: 15px;
+        margin-top: 0;
+        top: auto;
+    }
+
+    .quick-add-to-btn{
+      background-color: black !important;
+      color: white !important;
+    }
+
+    .quick-add-to-btn:active{
+        background-color: white !important;
+        color: black !important;
     }
 
     /* -------- Review Container------- */
@@ -128,6 +209,8 @@
     .review-card-container{
         width:80vw
     }
+
+    
 }
 
 @media screen and (max-width:650px){
@@ -135,6 +218,22 @@
     width: 85vw;
     }
 
+    .review-section{
+        flex-direction: column;
+        align-items: initial;
+    }
+    
+    .star-group{
+        justify-content: initial;
+    }
+
+    .add-to-cart-dropdown-container{
+        font-size: 14px;
+    }
+
+    .card-title{
+        font-size: 12px;
+    }
     .age-image-container{
         flex-direction: column !important;
         row-gap: 20px;

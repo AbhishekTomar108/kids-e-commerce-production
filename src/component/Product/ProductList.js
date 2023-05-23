@@ -35,12 +35,35 @@ export default function ProductList(props) {
      let data = await fetch('http://localhost:5000/api/product/products');
     let parsedData  = await data.json();
 
+
+    if(localStorage.getItem( 'categoryStatus' ) ==="true"){
+      console.log('category status ');
+      let  filterdata  =parsedData.filter(data=>{
+        return (data.category===localStorage.getItem( 'category'))
+      })
+      setproductdetails(filterdata);
+        setprouctTitle(filterdata[0].category)
+        setprouctTitleDesc(filterdata[0].description)
+    }
+
+    else if(localStorage.getItem( 'ageStatus' ) ==="true"){
+      console.log('category status ');
+      let  filterdata  =parsedData.filter(data=>{
+        return (data.age===localStorage.getItem( 'age'))
+      })
+      console.log('filter ',filterdata)
+      setproductdetails(filterdata);
+        setprouctTitle(`${localStorage.getItem( 'age')} years`)
+        setprouctTitleDesc(filterdata[0].description)
+    }
+else{
  let  filterdata  =parsedData.filter(data=>{
     return (data.product===localStorage.getItem( 'product'))
   })
   setproductdetails(filterdata);
     setprouctTitle(filterdata[0].title)
     setprouctTitleDesc(filterdata[0].description)
+}
 }
 
   
@@ -68,10 +91,10 @@ export default function ProductList(props) {
       <div>
         
               <div className="text">
-        <h1 style={{ fontSize: "30px" }}>{prouctTitle && prouctTitle}</h1>
+        <h1 style={{ fontSize: "30px" }}>{prouctTitle && prouctTitle} Collection</h1>
        
         <p style={{ textAlign: "center" }}>
-        {prouctTitleDesc && prouctTitleDesc}
+        {/* {prouctTitleDesc && prouctTitleDesc}  */}
         </p>
       </div>
         <div className="filter-text-container" onClick={showHideFilter}>
@@ -95,7 +118,7 @@ export default function ProductList(props) {
           <div className="card-body">
             <p className="card-text">
               
-                {data.productname} (1-3 years old)
+                {data.productname} ({data.age} years old)
           
               <br />
             

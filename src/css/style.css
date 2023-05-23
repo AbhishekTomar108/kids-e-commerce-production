@@ -420,7 +420,16 @@ font-style: italic;
 }
 
 .card-body{
-    padding:10px;
+    padding:0 0 10px 5px;
+    text-align: initial;
+    font-size: 14px;
+}
+
+.card-title{
+    display: block;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 2px;
 }
 
 .add-to-cart-container button{
@@ -566,6 +575,74 @@ body {
 
 /* Category */
 
+
+.shop-by-Category-container{
+            display: flex;
+            justify-content: space-around;
+}   
+
+.shop-by-Category-container div{
+    height: 131px;
+    min-width: 150px;
+    display: flex;
+    cursor: pointer;
+    background: white;
+    border-radius: 50%;
+    align-items: center;
+    border: 1px solid #f1f1f1;
+    font-size: 18px;
+    font-weight: 700;
+    justify-content: center;
+}
+
+.accessories{
+    color: #e36ba2;
+}
+
+.accessories:hover{
+    background: linear-gradient(#e36ba2,#d8327c);
+    color: white;
+}
+.toys{
+    color: #5f4e85;
+}
+
+.toys:hover{
+    background: linear-gradient(#5f4e85,#331277);
+    color: white;
+}
+.diapers{
+    color: #7dbb44;
+}
+
+.diapers:hover{
+    background: linear-gradient(#7dbb44,#57951e);
+    color: white;
+}
+.cot{
+    color: #f3bc5b;
+}
+
+.cot:hover{
+    background: linear-gradient(#f3bc5b,#b57d1c);
+    color: white;
+}
+.jacket{
+    color: #71dcc9;
+}
+
+.jacket:hover{
+    background: linear-gradient(#71dcc9,#19a78f);
+    color: white;
+}
+.stroller{
+    color: #ed782f;
+}
+
+.stroller:hover{
+    background: linear-gradient(#ed782f,#ad5a28);
+    color: white;
+}
 
 .Category-container {
     display: grid;
@@ -883,6 +960,10 @@ a{
     color: black;
 }
 
+.card-text{
+    height: 82px;
+}
+
 
 /* --------- Login component Style -----------*/
 
@@ -944,6 +1025,7 @@ justify-content: space-between;
 p{
     font-size: 14px;
     text-align: initial;
+    
 }
 .blog-text{
     justify-content: center;

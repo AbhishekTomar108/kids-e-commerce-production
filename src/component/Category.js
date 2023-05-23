@@ -8,8 +8,8 @@ export default function Category() {
     <>
    
     <div style={{width:"100vw", textAlign:"center"}} className="container">
-    <h2>Shop By Category</h2>
-    <span className='bestseller-span container'>Explore the Collection based on the Category</span>
+    <h2>Top Category</h2>
+   
 
     <div className='separator-image'></div>
     <div className="Category-container">

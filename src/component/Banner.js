@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import c1 from "../images/crousel1.jpg"
 import c2 from "../images/crousel2.jpg"
 import c3 from "../images/crousel3.jpg"
 export default function Banner() {
+  
+  useEffect(()=>{
+    localStorage.setItem( 'categoryStatus', false );
+    localStorage.setItem( 'ageStatus', false );
+  },[])
+
   return  (
     <>
     

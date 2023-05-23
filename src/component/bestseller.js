@@ -9,6 +9,8 @@ import img7 from '../images/img-7.png'
 import img8 from '../images/img-8.png'
 import img9 from '../images/img-9.png'
 import star from '../images/star.png'
+import Swal from 'sweetalert2'
+
 
 
 
@@ -40,6 +42,19 @@ const Bestseller = () => {
         console.log('second loop =',data[j])
       }
     }
+  }
+
+  const quickViewProduct = (image,productname)=>{
+   
+    Swal.fire({
+      title: productname,
+      text: 'Modal with a custom image.',
+      imageUrl: image,
+      imageWidth: 400,
+      imageHeight: 200,
+      imageAlt: 'Custom image',
+      confirm:"add to cart"
+    })
   }
 
   return (
@@ -76,15 +91,16 @@ const Bestseller = () => {
                         <div className="card">
                           <div className='image-add-to-cart-conatiner'>
                           <img className="img-fluid" alt="100%x280" src={data.image}/>
+                         
                           <div className='add-to-cart-dropdown-container'>
-                            <button className='quick-add-to-btn'>Quick View</button>
+                            <button className='quick-add-to-btn' onClick={()=>quickViewProduct(data.image, data.productname)}>Quick View</button>
                             <button className='quick-add-to-btn'>Add to Cart</button>
                           </div>
                           </div>
                         
                           <div className="card-body">
-                            <span className="card-title">Waldorf Wooden Rocker Balance Board for (3-10years)</span>
-                            <br/>
+                            <span className="card-title">{data.productname}({data.age}years)</span>
+                            
                             <div className='review-section'>
                             <div className='star-group'>
                             <img src={star}/>
@@ -125,6 +141,7 @@ const Bestseller = () => {
                         <div className="card">
                           <div className='image-add-to-cart-conatiner'>
                           <img className="img-fluid" alt="100%x280" src={data.image}/>
+                          
                           <div className='add-to-cart-dropdown-container'>
                             <button className='quick-add-to-btn'>Quick View</button>
                             <button className='quick-add-to-btn'>Add to Cart</button>
@@ -132,8 +149,8 @@ const Bestseller = () => {
                           </div>
                         
                           <div className="card-body">
-                            <span className="card-title">Waldorf Wooden Rocker Balance Board for (3-10years)</span>
-                            <br/>
+                            <span className="card-title">{data.productname} ({data.age}years)</span>
+                           
                             <div className='review-section'>
                             <div className='star-group'>
                             <img src={star}/>
@@ -172,6 +189,7 @@ const Bestseller = () => {
                         <div className="card">
                           <div className='image-add-to-cart-conatiner'>
                           <img className="img-fluid" alt="100%x280" src={data.image}/>
+                         
                           <div className='add-to-cart-dropdown-container'>
                             <button className='quick-add-to-btn'>Quick View</button>
                             <button className='quick-add-to-btn'>Add to Cart</button>
@@ -179,8 +197,8 @@ const Bestseller = () => {
                           </div>
                         
                           <div className="card-body">
-                            <span className="card-title">Waldorf Wooden Rocker Balance Board for (3-10years)</span>
-                            <br/>
+                            <span className="card-title">{data.productname} ({data.age}years)</span>
+              
                             <div className='review-section'>
                             <div className='star-group'>
                             <img src={star}/>

@@ -11,6 +11,7 @@ const LoginState = (props) => {
   
     const [productname, setproductname] = useState();
     const [filterProduct, setfilterProduct] = useState(false)
+    const [category, setcategory] = useState(false)
 
   const updateFilterProduct = (value)=>{
 
@@ -26,6 +27,18 @@ const LoginState = (props) => {
     const updateproductname = (data)=>{
       localStorage.setItem( 'product', data );
       setproductname(data);
+      localStorage.setItem( 'categoryStatus', false );
+      localStorage.setItem( 'ageStatus', false );
+    }
+
+    const updateCategory = (data)=>{
+      localStorage.setItem( 'category', data );
+      localStorage.setItem( 'categoryStatus', true );
+      setcategory(data);
+    }
+    const updateAge = (data)=>{
+      localStorage.setItem( 'age', data );
+      localStorage.setItem( 'ageStatus', true );
     }
 
     const fetchuserDetails = async()=>{
@@ -53,7 +66,7 @@ const LoginState = (props) => {
   }
 
   return (
-    <LoginContext.Provider value={{user, updateUser, productname, updateproductname, fetchuserDetails, filterProduct, updateFilterProduct}}>
+    <LoginContext.Provider value={{user, updateUser, productname, updateproductname, fetchuserDetails, filterProduct, updateFilterProduct, category, updateCategory, updateAge}}>
     {props.children}
 </LoginContext.Provider>
   )

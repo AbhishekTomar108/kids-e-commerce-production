@@ -31,6 +31,7 @@ import LoginState from './Context/LoginState';
 import UserHome from './component/user/UserHome';
 import UserCart from './component/user/UserCart';
 import ShopByAge from './component/ShopByAge';
+import ShopByCategory from './component/ShopByCategory';
 
 
 
@@ -58,7 +59,7 @@ function App() {
         <Route  exact path="/productdetails" element={<ProductDetails/>}/>
         <Route  exact path="/productcart" element={<ProductCart/>}/>
         <Route  exact path="/proceedtocheckout" element={<ProductCheckOut/>}/>
-        <Route  exact path="/" element={[<Banner/>, <ShopByAge/>, <Bestseller/>,<Category/>,<ReadMore/>, <Press/>, <Blog/>,<Customers/>]}/>
+        <Route  exact path="/" element={[<Banner/>, <ShopByAge/>, <ShopByCategory/>, <Bestseller/>,<Category/>,<ReadMore/>, <Press/>, <Blog/>,<Customers/>]}/>
 
        
         {/* <Banner/>
