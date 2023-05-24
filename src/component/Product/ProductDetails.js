@@ -123,7 +123,7 @@ const ProductDetails = () => {
                   <p className="mb-4">Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit
                     clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea
                     Nonumy</p>
-                  <div className="d-flex mb-3">
+                  {/* <div className="d-flex mb-3">
                     <strong className="text-dark mr-3 strong-text">Sizes:</strong>
                     <form>
                       <div className="custom-control custom-radio custom-control-inline">
@@ -147,8 +147,8 @@ const ProductDetails = () => {
                         <label className="custom-control-label" htmlFor="size-5">XL</label>
                       </div>
                     </form>
-                  </div>
-                  <div className="d-flex mb-4">
+                  </div> */}
+                  {/* <div className="d-flex mb-4">
                     <strong className="text-dark mr-3 strong-text">Colors:</strong>
                     <form>
                       <div className="custom-control custom-radio custom-control-inline">
@@ -172,7 +172,7 @@ const ProductDetails = () => {
                         <label className="custom-control-label" htmlFor="color-5">Green</label>
                       </div>
                     </form>
-                  </div>
+                  </div> */}
                   <div className="d-flex align-items-center mb-4 pt-2">
                     <div className="input-group quantity mr-3" style={{width: '158px', alignItems:'center'}}>
                       <div className="input-group-btn">

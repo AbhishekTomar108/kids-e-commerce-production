@@ -15,7 +15,9 @@ const LoginState = (props) => {
 
   const updateFilterProduct = (value)=>{
 
+    console.log('filter context ',value)
     setfilterProduct(value)
+    localStorage.setItem('status',"filterdata")
   }
 
     const updateUser = (data)=>{
@@ -26,19 +28,20 @@ const LoginState = (props) => {
 
     const updateproductname = (data)=>{
       localStorage.setItem( 'product', data );
+      localStorage.setItem( 'status', "byproduct" );
       setproductname(data);
-      localStorage.setItem( 'categoryStatus', false );
-      localStorage.setItem( 'ageStatus', false );
+    
     }
 
     const updateCategory = (data)=>{
       localStorage.setItem( 'category', data );
-      localStorage.setItem( 'categoryStatus', true );
+      localStorage.setItem( 'status', "category" );
       setcategory(data);
     }
     const updateAge = (data)=>{
       localStorage.setItem( 'age', data );
-      localStorage.setItem( 'ageStatus', true );
+      localStorage.setItem( 'status', "age" );
+  
     }
 
     const fetchuserDetails = async()=>{

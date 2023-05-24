@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const JWT_SECRET = "mmm";
 const allproducts = mongoose.model('allproducts', {});
+const allbestsellers = mongoose.model('bestsellers', {});
 
 //ROUTE-1 fetch all product data using Get
 
@@ -24,6 +25,22 @@ router.get("/products", async (req, res) => {
       res.status(500).send({"error":error.message});
     }
   });
+
+
+  // ROUTE - fetch all bestsellers products
+
+  router.get("/bestsellers", async (req, res) => {
+
+    try {
+      const bestseller = await allbestsellers.find({});
+      return res.json(bestseller);
+    } 
+    catch (error) {
+      console.error(error.message);
+      res.status(500).send({"error":error.message});
+    }
+  });
+
 
 // Route-2 add product correspond to user using post
 router.post(

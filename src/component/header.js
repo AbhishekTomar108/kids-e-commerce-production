@@ -17,12 +17,17 @@ const Header = () => {
 
     useEffect(()=>{
 
+        
    if(searchitem!==""){
     fetch(`http://localhost:5000/api/product/products/`).then(res=>res.json()).then(data=> {const filteredDtata = data.filter(element=>{ return (element.productname.toLowerCase().includes(searchitem,0) || element.category.toLowerCase().includes(searchitem,0))})
-    ContextValue.updateFilterProduct(true)
+    
     setfilterData(filteredDtata)
     localStorage.setItem('filterproductData', JSON.stringify(filteredDtata));
+       
+  
 })
+
+
    }
 
     },[ContextValue.productname, searchitem])
@@ -66,6 +71,9 @@ const Header = () => {
             console.log('if running')
             setfilterData(null)
             ContextValue.updateFilterProduct(false)
+            const headerContainer = document.getElementsByClassName('header-container')[0]
+
+            headerContainer.style.flexDirection = "column"
             // setSearchItem('')
            
         }
@@ -74,6 +82,7 @@ const Header = () => {
     const showSearchBar = ()=>{
         console.log('seacrh input running')
         const searchInput = document.getElementsByClassName('search_input_div_input')[0]
+        const headerContainer = document.getElementsByClassName('header-container')[0]
         console.log('style input =',searchInput)
         console.log('style input =',searchInput.style)
         console.log('style input =',searchInput.style.display)
@@ -86,6 +95,7 @@ const Header = () => {
             console.log('if seacrh input running')
 
             searchInput.style.display="block"
+            headerContainer.style.flexDirection = "column"
         }
     }
 
@@ -114,7 +124,7 @@ const Header = () => {
                     value={searchitem}
                     onChange={e=>setSearchItem(e.target.value)}
                 />
-
+                    <img className='cross-to-search-bar' src={cross}/>
                 </div>
                 {/* <div className='search_icon ' onClick={showSearchBar}> */}
                 <img className='search-cross-icon' onClick={filterData?removeSearch:showSearchBar} src={filterData?cross:search}/>
@@ -125,7 +135,7 @@ const Header = () => {
            {filterData && filterData.map((data,index)=>{
             return (
                     
-                <Link to='categories'><a target='_blank' className='search_suggestion_line' key={index}>
+                <Link to='categories' onClick={()=>ContextValue.updateFilterProduct(true)}><a target='_blank' className='search_suggestion_line' key={index}>
                     {data.productname}
                 </a></Link>
          

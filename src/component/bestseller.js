@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from "react-router-dom";
+import cross from '../images/cross.png'
 import img1 from '../images/img-1.png'
 import img2 from '../images/img-2.png'
 import img3 from '../images/img-3.png'
@@ -10,6 +12,7 @@ import img8 from '../images/img-8.png'
 import img9 from '../images/img-9.png'
 import star from '../images/star.png'
 import Swal from 'sweetalert2'
+import ProductCart from './Product/ProductCart';
 
 
 
@@ -18,12 +21,14 @@ import Swal from 'sweetalert2'
 const Bestseller = () => {
 
   const [bestSellerData, setbestSellerData] = useState();
+  const [quickViewStatus, setquickViewStatus] = useState(false);
   useEffect(()=>{
     fetchProductData();
+    
   },[])
 
   const fetchProductData = async()=>{
-    const res  =await fetch('http://localhost:5000/api/product/products')
+    const res  =await fetch('http://localhost:5000/api/product/bestsellers')
 
     const data = await res.json();
     setbestSellerData(data);
@@ -31,34 +36,173 @@ const Bestseller = () => {
 
   }
 
-  const setAllProduct = (data)=>{
-    let productItem = [];
-    console.log('hello from')
-
-    for(let index=0; index<data.length; index=index+2){
-      productItem.push( <div className="carousel-item active"/>)
-      productItem.push( <div className="carousel-item active"/>)
-      for(let j=index; j<index+2; j++){
-        console.log('second loop =',data[j])
-      }
-    }
-  }
+   
 
   const quickViewProduct = (image,productname)=>{
    
-    Swal.fire({
-      title: productname,
-      text: 'Modal with a custom image.',
-      imageUrl: image,
-      imageWidth: 400,
-      imageHeight: 200,
-      imageAlt: 'Custom image',
-      confirm:"add to cart"
-    })
+  const quickViewProduct = document.querySelector('.quick-view-product-container');
+  const bestsellerSection = document.querySelector('.bestseller-section');
+  quickViewProduct.style.visibility="visible";
+  quickViewProduct.style.opacity="1";
+  quickViewProduct.style.height="auto";
+  bestsellerSection.style.opacity="0.3";
+  bestsellerSection.style.background = 'black';
+
+  }
+
+  const hideQuickView =()=>{
+    const quickViewProduct = document.querySelector('.quick-view-product-container');
+    const bestsellerSection = document.querySelector('.bestseller-section');
+    quickViewProduct.style.visibility="hidden";
+    quickViewProduct.style.opacity="0";
+    quickViewProduct.style.height="0";
+    bestsellerSection.style.opacity="1";
+    bestsellerSection.style.background = 'none';
+    setquickViewStatus(false)
   }
 
   return (
     <div className='bestseller container'>
+
+      {<div className='quick-view-product-container'>
+        <div className="container-fluid pb-5">
+            <div className="row px-xl-5">
+              <div className="col-lg-5 mb-30">
+                <div id="product-carousel" className="carousel slide" data-ride="carousel">
+                  <div className="carousel-inner bg-light">
+                    <div className="carousel-item active">
+                      <img className="w-100 h-100" src={localStorage.getItem('productImage')} alt="Image" />
+                    </div>
+                    <div className="carousel-item">
+                      <img className="w-100 h-100" src={localStorage.getItem('productImage')} alt="Image" />
+                    </div>
+                    <div className="carousel-item">
+                      <img className="w-100 h-100" src={localStorage.getItem('productImage')} alt="Image" />
+                    </div>
+                    <div className="carousel-item">
+                      <img className="w-100 h-100" src={localStorage.getItem('productImage')} alt="Image" />
+                    </div>
+                  </div>
+                  <a className="carousel-control-prev" href="#product-carousel" data-slide="prev">
+                    <i className="fa fa-2x fa-angle-left text-dark" />
+                  </a>
+                  <a className="carousel-control-next" href="#product-carousel" data-slide="next">
+                    <i className="fa fa-2x fa-angle-right text-dark" />
+                  </a>
+                </div>
+              </div>
+              <div className="col-lg-7 pos-rel h-auto mb-30">
+                <img className='cross-quick-view' src={cross} onClick={hideQuickView}/>
+                <div className="h-100 bg-light p-30">
+                  <h3>{localStorage.getItem('productName')}</h3>
+                  {console.log(localStorage.getItem('productName'))}
+                  <div className="d-flex mb-3">
+                    <div className="text-primary mr-2">
+                      <small className="fas fa-star" />
+                      <small className="fas fa-star" />
+                      <small className="fas fa-star" />
+                      <small className="fas fa-star-half-alt" />
+                      <small className="far fa-star" />
+                    </div>
+                    <small className="pt-1">(99 Reviews)</small>
+                  </div>
+                  <h3 className="font-weight-semi-bold mb-4">{localStorage.getItem('productPrice')}</h3>
+                  <p className="mb-4">Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit
+                    clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea
+                    Nonumy</p>
+                  {/* <div className="d-flex mb-3">
+                    <strong className="text-dark mr-3 strong-text">Sizes:</strong>
+                    <form>
+                      <div className="custom-control custom-radio custom-control-inline">
+                        <input type="radio" className="custom-control-input" id="size-1" name="size" />
+                        <label className="custom-control-label" htmlFor="size-1">XS</label>
+                      </div>
+                      <div className="custom-control custom-radio custom-control-inline">
+                        <input type="radio" className="custom-control-input" id="size-2" name="size" />
+                        <label className="custom-control-label" htmlFor="size-2">S</label>
+                      </div>
+                      <div className="custom-control custom-radio custom-control-inline">
+                        <input type="radio" className="custom-control-input" id="size-3" name="size" />
+                        <label className="custom-control-label" htmlFor="size-3">M</label>
+                      </div>
+                      <div className="custom-control custom-radio custom-control-inline">
+                        <input type="radio" className="custom-control-input" id="size-4" name="size" />
+                        <label className="custom-control-label" htmlFor="size-4">L</label>
+                      </div>
+                      <div className="custom-control custom-radio custom-control-inline">
+                        <input type="radio" className="custom-control-input" id="size-5" name="size" />
+                        <label className="custom-control-label" htmlFor="size-5">XL</label>
+                      </div>
+                    </form>
+                  </div> */}
+                  {/* <div className="d-flex mb-4">
+                    <strong className="text-dark mr-3 strong-text">Colors:</strong>
+                    <form>
+                      <div className="custom-control custom-radio custom-control-inline">
+                        <input type="radio" className="custom-control-input" id="color-1" name="color" />
+                        <label className="custom-control-label" htmlFor="color-1">Black</label>
+                      </div>
+                      <div className="custom-control custom-radio custom-control-inline">
+                        <input type="radio" className="custom-control-input" id="color-2" name="color" />
+                        <label className="custom-control-label" htmlFor="color-2">White</label>
+                      </div>
+                      <div className="custom-control custom-radio custom-control-inline">
+                        <input type="radio" className="custom-control-input" id="color-3" name="color" />
+                        <label className="custom-control-label" htmlFor="color-3">Red</label>
+                      </div>
+                      <div className="custom-control custom-radio custom-control-inline">
+                        <input type="radio" className="custom-control-input" id="color-4" name="color" />
+                        <label className="custom-control-label" htmlFor="color-4">Blue</label>
+                      </div>
+                      <div className="custom-control custom-radio custom-control-inline">
+                        <input type="radio" className="custom-control-input" id="color-5" name="color" />
+                        <label className="custom-control-label" htmlFor="color-5">Green</label>
+                      </div>
+                    </form>
+                  </div> */}
+                  <div className="d-flex align-items-center mb-4 pt-2">
+                    {/* <div className="input-group quantity mr-3" style={{width: '158px', alignItems:'center'}}>
+                      <div className="input-group-btn">
+                        <button className="btn btn-primary btn-minus"  >
+                          <i className="fa fa-minus"/>
+                        </button>
+                      </div>
+                      <input type="text" className="form-control bg-secondary border-0 text-center" value="1" />
+                      <div className="input-group-btn">
+                        <button className="btn btn-primary btn-plus">
+                          <i className="fa fa-plus"/>
+                        </button>
+                      </div>
+                    </div> */}
+                    <button className="btn btn-primary px-3" ><i className="fa fa-shopping-cart mr-1" /> <Link to='/productdetails'> Add To
+                      Cart </Link></button>
+                  </div>
+                  <div className="d-flex pt-2">
+                    <strong className="text-dark mr-2">Share on:</strong>
+                    <div className="d-inline-flex">
+                      <a className="text-dark px-2" href>
+                        <i className="fab fa-facebook-f" />
+                      </a>
+                      <a className="text-dark px-2" href>
+                        <i className="fab fa-twitter" />
+                      </a>
+                      <a className="text-dark px-2" href>
+                        <i className="fab fa-linkedin-in" />
+                      </a>
+                      <a className="text-dark px-2" href>
+                        <i className="fab fa-pinterest" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+      </div>}
+
+      {/* bestseller quick overview container end */}
+      <div className='bestseller-section'>
         <h2>Bestseller</h2>
         <span className='bestseller-span container'>Check our Bestseller Collection of Accessories and more</span>
         <div className='separator-image'></div>
@@ -93,8 +237,8 @@ const Bestseller = () => {
                           <img className="img-fluid" alt="100%x280" src={data.image}/>
                          
                           <div className='add-to-cart-dropdown-container'>
-                            <button className='quick-add-to-btn' onClick={()=>quickViewProduct(data.image, data.productname)}>Quick View</button>
-                            <button className='quick-add-to-btn'>Add to Cart</button>
+                            <button className='quick-add-to-btn' onClick={()=>{quickViewProduct(data.image, data.productname) ; localStorage.setItem('productPrice',data.price); localStorage.setItem('productName',data.productname); localStorage.setItem('productImage',data.image) ; setquickViewStatus(true)}}>Quick View</button>
+                             <Link to='/productdetails' onClick={()=>{localStorage.setItem('productPrice',data.price); localStorage.setItem('productName',data.productname); localStorage.setItem('productImage',data.image)}}><button className='quick-add-to-btn'>Add to Cart</button></Link>
                           </div>
                           </div>
                         
@@ -143,8 +287,8 @@ const Bestseller = () => {
                           <img className="img-fluid" alt="100%x280" src={data.image}/>
                           
                           <div className='add-to-cart-dropdown-container'>
-                            <button className='quick-add-to-btn'>Quick View</button>
-                            <button className='quick-add-to-btn'>Add to Cart</button>
+                          <button className='quick-add-to-btn' onClick={()=>{quickViewProduct(data.image, data.productname) ; localStorage.setItem('productPrice',data.price); localStorage.setItem('productName',data.productname); localStorage.setItem('productImage',data.image) ; setquickViewStatus(true)}}>Quick View</button>
+                             <Link to='/productdetails' onClick={()=>{localStorage.setItem('productPrice',data.price); localStorage.setItem('productName',data.productname); localStorage.setItem('productImage',data.image)}}><button className='quick-add-to-btn'>Add to Cart</button></Link>
                           </div>
                           </div>
                         
@@ -191,8 +335,8 @@ const Bestseller = () => {
                           <img className="img-fluid" alt="100%x280" src={data.image}/>
                          
                           <div className='add-to-cart-dropdown-container'>
-                            <button className='quick-add-to-btn'>Quick View</button>
-                            <button className='quick-add-to-btn'>Add to Cart</button>
+                          <button className='quick-add-to-btn' onClick={()=>{quickViewProduct(data.image, data.productname) ; localStorage.setItem('productPrice',data.price); localStorage.setItem('productName',data.productname); localStorage.setItem('productImage',data.image) ; setquickViewStatus(true)}}>Quick View</button>
+                             <Link to='/productdetails' onClick={()=>{localStorage.setItem('productPrice',data.price); localStorage.setItem('productName',data.productname); localStorage.setItem('productImage',data.image)}}><button className='quick-add-to-btn'>Add to Cart</button></Link>
                           </div>
                           </div>
                         
@@ -234,6 +378,7 @@ const Bestseller = () => {
           </div>
         </div>
       </section>
+      </div>
     </div>
   )
 }

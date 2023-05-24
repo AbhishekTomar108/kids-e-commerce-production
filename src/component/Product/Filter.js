@@ -34,7 +34,7 @@ const Filter = () => {
             <div className='filter-text'>
                 <h2>Filter</h2>
             </div>
-
+{/* 
             <div className='color-container'>
                 <div className='text-section'>
                 <h2>Out of Stock</h2>
@@ -47,7 +47,7 @@ const Filter = () => {
                         <div className='hide-text'></div><span>Hide</span>
                     </div>
                   
-               {/* <div className='color-section filter-content-section'>
+               <div className='color-section filter-content-section'>
                 {
                     colorArray.map((data,index)=>{
                         return(
@@ -55,29 +55,25 @@ const Filter = () => {
                         )
                     })
                 }
-                </div> */}
+                </div>
             
-            </div>
+            </div> */}
 
             <div className='size-container'>
             <div className='text-section'>
                 <h2>Years</h2>
                
-                    <img className='drop-down-arrow' onClick={()=>showColor(1)} src={down}/>
+                    <img className='drop-down-arrow' onClick={()=>showColor(0)} src={down}/>
                     </div>
                 <ul className='filter-content-section'>
                     <li>0-1 years</li>
                     <li>1-2 years</li>
-                    <li>2-3 years</li>
-                    <li>3-4 years</li>
-                    <li>4-5 years</li>
-                    <li>6+ years</li>
-                    <li>All years</li>
-                   
+                    <li>2-4 years</li>
+                    <li>4+ years</li>                   
                 </ul>
             </div>
 
-            <div className='price-container'>
+            {/* <div className='price-container'>
             <div className='text-section'>
                 <h2>Price</h2>
                
@@ -93,7 +89,7 @@ const Filter = () => {
                         Price : High to Low
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
 
         

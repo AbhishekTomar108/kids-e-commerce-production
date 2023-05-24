@@ -1,6 +1,7 @@
 import React, {useContext} from 'react'
 import LoginContext from '../Context/LoginContext'
 import { Link } from "react-router-dom";
+import toysSmall from '../images/toys-small.webp'
 
 
 export default function ShopByCategory() {
@@ -14,12 +15,12 @@ export default function ShopByCategory() {
 
     <div className='separator-image'></div>
     <div className="shop-by-Category-container">
-     <Link to='categories'><div className='accessories' onClick={()=>ContextValue.updateCategory("Accessory")}>Accessories</div></Link>
-     <Link to='categories'><div className='toys' onClick={()=>ContextValue.updateCategory("Toy")}>Toys</div></Link>
-     <Link to='categories'><div className='diapers' onClick={()=>ContextValue.updateCategory("Diaper")}>Diapers</div></Link>
-     <Link to='categories'><div className='cot' onClick={()=>ContextValue.updateCategory("Cot")}>Cots</div></Link>
-     <Link to='categories'><div className='jacket' onClick={()=>ContextValue.updateCategory("Jacket")}>Jackets</div></Link>
-     <Link to='categories'><div className='stroller' onClick={()=>ContextValue.updateCategory("Accessory")}>Stroller</div></Link>
+     <div className='shop-by-category'><Link to='categories'><div className='accessories categories-image'  onClick={()=>ContextValue.updateCategory("Accessory")}></div></Link><span>Accessories</span></div>
+     <div className='shop-by-category'><Link to='categories'><div className='toys categories-image' onClick={()=>ContextValue.updateCategory("Toy")}></div></Link><span>Toys</span></div>
+     <div className='shop-by-category'><Link to='categories'><div className='diapers categories-image' onClick={()=>ContextValue.updateCategory("Diaper")}></div></Link><span>Diaper</span></div>
+     <div className='shop-by-category'><Link to='categories'><div className='cot categories-image' onClick={()=>ContextValue.updateCategory("Cot")}></div></Link><span>Cots</span></div>
+     <div className='shop-by-category'><Link to='categories'><div className='jacket categories-image' onClick={()=>ContextValue.updateCategory("Jacket")}></div></Link><span>Jackets</span></div>
+     <div className='shop-by-category'><Link to='categories'><div className='stroller categories-image' onClick={()=>ContextValue.updateCategory("stroller")}></div></Link><span>Strollers</span></div>
 </div>
 
 

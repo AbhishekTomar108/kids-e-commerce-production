@@ -16,27 +16,37 @@ export default function ProductList(props) {
   useEffect(()=>{
 
     fetchProductData();
+    console.log('useeffect of product list')
   
 
-  },[ContextValue.productname])
+  },[ContextValue.productname, ContextValue.filterProduct])
 
   const fetchProductData =async()=>{
   
 
-    if(ContextValue.filterProduct===true)
-    {
-      let filterdata = JSON.parse(localStorage.getItem("filterproductData"));
-      setproductdetails(filterdata);
-      setprouctTitle(filterdata[0].title)
-      setprouctTitleDesc(filterdata[0].description)
-    }
+    // if(ContextValue.filterProduct===false)
+    // {
+    //   let filterdata = JSON.parse(localStorage.getItem("filterproductData"));
+    //   setproductdetails(filterdata);
+    //   setprouctTitle(filterdata[0].title)
+    //   setprouctTitleDesc(filterdata[0].description)
+    // }
 
-    else{
+    // else{
      let data = await fetch('http://localhost:5000/api/product/products');
     let parsedData  = await data.json();
 
+    
+    if(localStorage.getItem( 'status' ) ==="filterdata"){
+      console.log('filter status ');
+      let  filterdata  = JSON.parse(localStorage.getItem("filterproductData"));
+      console.log('filter from function =',filterdata)
+      setproductdetails(filterdata);
+        setprouctTitle(filterdata[0].category)
+        setprouctTitleDesc(filterdata[0].description)
+    }
 
-    if(localStorage.getItem( 'categoryStatus' ) ==="true"){
+    if(localStorage.getItem( 'status' ) ==="category"){
       console.log('category status ');
       let  filterdata  =parsedData.filter(data=>{
         return (data.category===localStorage.getItem( 'category'))
@@ -46,8 +56,8 @@ export default function ProductList(props) {
         setprouctTitleDesc(filterdata[0].description)
     }
 
-    else if(localStorage.getItem( 'ageStatus' ) ==="true"){
-      console.log('category status ');
+    else if(localStorage.getItem( 'status' ) ==="age"){
+      console.log('age status ');
       let  filterdata  =parsedData.filter(data=>{
         return (data.age===localStorage.getItem( 'age'))
       })
@@ -56,7 +66,7 @@ export default function ProductList(props) {
         setprouctTitle(`${localStorage.getItem( 'age')} years`)
         setprouctTitleDesc(filterdata[0].description)
     }
-else{
+else if(localStorage.getItem( 'status' ) ==="byproduct"){
  let  filterdata  =parsedData.filter(data=>{
     return (data.product===localStorage.getItem( 'product'))
   })
@@ -64,9 +74,7 @@ else{
     setprouctTitle(filterdata[0].title)
     setprouctTitleDesc(filterdata[0].description)
 }
-}
 
-  
 
  
   }
@@ -92,6 +100,7 @@ else{
         
               <div className="text">
         <h1 style={{ fontSize: "30px" }}>{prouctTitle && prouctTitle} Collection</h1>
+        <hr></hr>
        
         <p style={{ textAlign: "center" }}>
         {/* {prouctTitleDesc && prouctTitleDesc}  */}

@@ -1,9 +1,12 @@
-import React from 'react'
-import i1 from "../images/Categorey-Banner-1-desktop.webp"
-import i2 from "../images/Categorey-Banner-2-desktop.webp"
-import i3 from "../images/Categorey-Banner-3-desktop.webp"
-import i4 from "../images/Categorey-Banner-4-desktop.webp"
+import React, {useContext} from 'react'
+import diaper from "../images/diaper-category.png"
+import toy from "../images/toy-catergory.png"
+import stroller from "../images/stroller-category.png"
+import jacket from "../images/Jacket-category.png"
+import { Link } from "react-router-dom";
+import LoginContext from '../Context/LoginContext'
 export default function Category() {
+  const ContextValue = useContext(LoginContext);
   return (
     <>
    
@@ -13,10 +16,10 @@ export default function Category() {
 
     <div className='separator-image'></div>
     <div className="Category-container">
-<img className='image' src={i1} alt="" />
-<img className='image' src={i2} alt="" />
-<img className='image' src={i3} alt="" />
-<img className='image' src={i4} alt="" />
+    <Link to='categories'><div className='toys' onClick={()=>ContextValue.updateCategory("Toy")}><img className='image' src={toy} alt="" /></div></Link>
+ <Link to='categories'><div className='diapers' onClick={()=>ContextValue.updateCategory("Diaper")}><img className='image' src={diaper} alt="" /></div></Link>
+ <Link to='categories'><div className='stroller' onClick={()=>ContextValue.updateCategory("stroller")}><img className='image' src={stroller} alt="" /></div></Link>
+<Link to='categories'><div className='jacket' onClick={()=>ContextValue.updateCategory("Jacket")}><img className='image' src={jacket} alt="" /></div></Link>
 </div>
 
 
