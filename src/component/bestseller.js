@@ -42,10 +42,17 @@ const Bestseller = () => {
    
   const quickViewProduct = document.querySelector('.quick-view-product-container');
   const bestsellerSection = document.querySelector('.bestseller-section');
+  const overlay = document.getElementById('overlay');
+
+  document.body.style.overflow = 'hidden';
+
   quickViewProduct.style.visibility="visible";
+  overlay.style.display = 'block';
   quickViewProduct.style.opacity="1";
   quickViewProduct.style.height="auto";
   bestsellerSection.style.opacity="0.3";
+  // document.body.style.backgroundColor = "black";
+  // document.body.style.opacity="0.3";
   bestsellerSection.style.background = 'black';
 
   }
@@ -53,10 +60,17 @@ const Bestseller = () => {
   const hideQuickView =()=>{
     const quickViewProduct = document.querySelector('.quick-view-product-container');
     const bestsellerSection = document.querySelector('.bestseller-section');
+    const overlay = document.getElementById('overlay');
+
+    document.body.style.overflow = 'auto';
+
     quickViewProduct.style.visibility="hidden";
+    overlay.style.display = 'none';
     quickViewProduct.style.opacity="0";
     quickViewProduct.style.height="0";
     bestsellerSection.style.opacity="1";
+    // document.body.style.backgroundColor = "none";
+    // document.body.style.opacity="1";
     bestsellerSection.style.background = 'none';
     setquickViewStatus(false)
   }
@@ -66,20 +80,20 @@ const Bestseller = () => {
 
       {<div className='quick-view-product-container'>
         <div className="container-fluid pb-5">
-            <div className="row px-xl-5">
-              <div className="col-lg-5 mb-30">
-                <div id="product-carousel" className="carousel slide" data-ride="carousel">
-                  <div className="carousel-inner bg-light">
-                    <div className="carousel-item active">
+            <div className="quick-view-row row px-xl-5">
+              <div className="bestseller-col-lg-5 col-lg-5 mb-30">
+                <div id="product-carousel" style={{height:"100%"}} className="carousel slide" data-ride="carousel">
+                  <div className="carousel-inner bg-light" style={{height:"100%"}}>
+                    <div className="carousel-item active" style={{height:"100%"}}>
                       <img className="w-100 h-100" src={localStorage.getItem('productImage')} alt="Image" />
                     </div>
-                    <div className="carousel-item">
+                    <div className="carousel-item" style={{height:"100%"}}>
                       <img className="w-100 h-100" src={localStorage.getItem('productImage')} alt="Image" />
                     </div>
-                    <div className="carousel-item">
+                    <div className="carousel-item" style={{height:"100%"}}>
                       <img className="w-100 h-100" src={localStorage.getItem('productImage')} alt="Image" />
                     </div>
-                    <div className="carousel-item">
+                    <div className="carousel-item" style={{height:"100%"}}>
                       <img className="w-100 h-100" src={localStorage.getItem('productImage')} alt="Image" />
                     </div>
                   </div>
@@ -91,10 +105,10 @@ const Bestseller = () => {
                   </a>
                 </div>
               </div>
-              <div className="col-lg-7 pos-rel h-auto mb-30">
+              <div className="bestseller-col-lg-7 col-lg-7 pos-rel h-auto mb-30">
                 <img className='cross-quick-view' src={cross} onClick={hideQuickView}/>
                 <div className="h-100 bg-light p-30">
-                  <h3>{localStorage.getItem('productName')}</h3>
+                  <h3 style={{textAlign:"initial"}}>{localStorage.getItem('productName')}</h3>
                   {console.log(localStorage.getItem('productName'))}
                   <div className="d-flex mb-3">
                     <div className="text-primary mr-2">
@@ -106,7 +120,7 @@ const Bestseller = () => {
                     </div>
                     <small className="pt-1">(99 Reviews)</small>
                   </div>
-                  <h3 className="font-weight-semi-bold mb-4">{localStorage.getItem('productPrice')}</h3>
+                  <h3 style={{textAlign:"initial"}} className="font-weight-semi-bold mb-4">Price : {localStorage.getItem('productPrice')} &#x20B9;</h3>
                   <p className="mb-4">Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit
                     clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea
                     Nonumy</p>
@@ -174,7 +188,8 @@ const Bestseller = () => {
                         </button>
                       </div>
                     </div> */}
-                    <button className="btn btn-primary px-3" ><i className="fa fa-shopping-cart mr-1" /> <Link to='/productdetails'> Add To
+                    <button className="btn btn-primary px-3" ><i className="fa fa-shopping-cart mr-1" /> <Link to='/productdetails' onClick={()=>document.body.style.overflow = 'auto'
+}> Add To
                       Cart </Link></button>
                   </div>
                   <div className="d-flex pt-2">
@@ -200,7 +215,7 @@ const Bestseller = () => {
             
           </div>
       </div>}
-
+      <div id="overlay"></div>
       {/* bestseller quick overview container end */}
       <div className='bestseller-section'>
         <h2>Bestseller</h2>

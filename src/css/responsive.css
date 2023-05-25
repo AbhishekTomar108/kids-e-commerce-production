@@ -147,6 +147,20 @@
         top: auto;
     }
 
+    .quick-view-product-container{
+        top: 0;
+    }
+
+    .bestseller-col-lg-7{
+        width: auto;
+        
+      }
+    
+      .bestseller-col-lg-5{
+        width:auto;
+        
+      }
+
     .quick-add-to-btn{
       background-color: black !important;
       color: white !important;
@@ -202,6 +216,8 @@
     .product-item span{
         font-size: 12px;
     }
+
+   
 }
 
 
@@ -241,6 +257,16 @@
     .age-image-container{
         flex-direction: column !important;
         row-gap: 20px;
+    }
+
+     /* ----- Parenting component------ */
+     .blog-card{
+        width:auto;
+    }
+
+    .blog-container{
+        flex-direction: column;
+        padding: 10px;
     }
 }
 

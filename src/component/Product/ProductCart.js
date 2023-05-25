@@ -161,17 +161,17 @@ productName}</td>
               <div className="border-bottom pb-2">
                 <div className="d-flex justify-content-between mb-3">
                   <h6>Subtotal</h6>
-                  <h6>{totalAmount}</h6>
+                  <h6>{totalAmount} &#x20B9;</h6>
                 </div>
                 <div className="d-flex justify-content-between">
                   <h6 className="font-weight-medium">Shipping</h6>
-                  <h6 className="font-weight-medium">$10</h6>
+                  <h6 className="font-weight-medium">10 &#x20B9;</h6>
                 </div>
               </div>
               <div className="pt-2">
                 <div className="d-flex justify-content-between mt-2">
                   <h5>Total</h5>
-                  <h5>{totalAmount+10}</h5>
+                  <h5>{totalAmount+10} &#x20B9;</h5>
                 </div>
                 <button className="btn btn-block btn-primary font-weight-bold my-3 py-3"> <Link to="/proceedtocheckout"> Proceed To Checkout </Link> </button>
               </div>

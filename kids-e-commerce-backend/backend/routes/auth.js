@@ -6,6 +6,7 @@ const bcrypt = require('bcryptjs');
 const { body, validationResult } = require("express-validator");
 var jwt = require("jsonwebtoken");
 var fetchuser = require('../middleware/fetchuser');
+const sendmail = require('../controller/sendmail')
 
 
 const JWT_SECRET = "mmm";
@@ -169,6 +170,8 @@ router.post(
       res.status(500).send({ "error": "Internal server error" });
     }
   })
+
+  router.get('/mail',sendmail)
 
 
  

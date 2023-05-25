@@ -11,6 +11,7 @@ const LoginState = (props) => {
   
     const [productname, setproductname] = useState();
     const [filterProduct, setfilterProduct] = useState(false)
+    const [filterProductByAge, setfilterProductByAge] = useState(false)
     const [category, setcategory] = useState(false)
 
   const updateFilterProduct = (value)=>{
@@ -18,6 +19,11 @@ const LoginState = (props) => {
     console.log('filter context ',value)
     setfilterProduct(value)
     localStorage.setItem('status',"filterdata")
+  }
+  const updateFilterProductByAge = (value)=>{
+
+    console.log('filter by age context ',value)
+    setfilterProductByAge(value)
   }
 
     const updateUser = (data)=>{
@@ -69,7 +75,7 @@ const LoginState = (props) => {
   }
 
   return (
-    <LoginContext.Provider value={{user, updateUser, productname, updateproductname, fetchuserDetails, filterProduct, updateFilterProduct, category, updateCategory, updateAge}}>
+    <LoginContext.Provider value={{user, updateUser, productname, updateproductname, fetchuserDetails, filterProduct, updateFilterProduct, category, updateCategory, updateAge, updateFilterProductByAge,filterProductByAge}}>
     {props.children}
 </LoginContext.Provider>
   )

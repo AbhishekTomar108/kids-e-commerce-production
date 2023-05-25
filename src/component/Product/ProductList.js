@@ -19,7 +19,7 @@ export default function ProductList(props) {
     console.log('useeffect of product list')
   
 
-  },[ContextValue.productname, ContextValue.filterProduct])
+  },[ContextValue.productname, ContextValue.filterProduct, ContextValue.filterProductByAge])
 
   const fetchProductData =async()=>{
   
@@ -37,10 +37,22 @@ export default function ProductList(props) {
     let parsedData  = await data.json();
 
     
+    if(localStorage.getItem( 'status' ) ==="filterByAge"){
+      console.log('filter status ');
+      
+       let filterdata = JSON.parse(localStorage.getItem('filterProductAge'))
+      setproductdetails(filterdata);
+        setprouctTitle(filterdata[0].category)
+        setprouctTitleDesc(filterdata[0].description)
+        ContextValue.updateFilterProductByAge(false);
+    }
+
     if(localStorage.getItem( 'status' ) ==="filterdata"){
       console.log('filter status ');
       let  filterdata  = JSON.parse(localStorage.getItem("filterproductData"));
       console.log('filter from function =',filterdata)
+
+      localStorage.setItem('currentProductData',JSON.stringify(filterdata))
       setproductdetails(filterdata);
         setprouctTitle(filterdata[0].category)
         setprouctTitleDesc(filterdata[0].description)
@@ -51,6 +63,7 @@ export default function ProductList(props) {
       let  filterdata  =parsedData.filter(data=>{
         return (data.category===localStorage.getItem( 'category'))
       })
+      localStorage.setItem('currentProductData',JSON.stringify(filterdata))
       setproductdetails(filterdata);
         setprouctTitle(filterdata[0].category)
         setprouctTitleDesc(filterdata[0].description)
@@ -62,6 +75,7 @@ export default function ProductList(props) {
         return (data.age===localStorage.getItem( 'age'))
       })
       console.log('filter ',filterdata)
+      localStorage.setItem('currentProductData',JSON.stringify(filterdata))
       setproductdetails(filterdata);
         setprouctTitle(`${localStorage.getItem( 'age')} years`)
         setprouctTitleDesc(filterdata[0].description)
@@ -70,6 +84,7 @@ else if(localStorage.getItem( 'status' ) ==="byproduct"){
  let  filterdata  =parsedData.filter(data=>{
     return (data.product===localStorage.getItem( 'product'))
   })
+  localStorage.setItem('currentProductData',JSON.stringify(filterdata))
   setproductdetails(filterdata);
     setprouctTitle(filterdata[0].title)
     setprouctTitleDesc(filterdata[0].description)
@@ -116,7 +131,7 @@ else if(localStorage.getItem( 'status' ) ==="byproduct"){
 
       <div className="Active Product-list-card-container">
 
-        {productdetails && productdetails.map((data,index)=>{
+        {productdetails && productdetails.length!==0? productdetails.map((data,index)=>{
 
             return(
             <div className="card" key={index}>
@@ -149,7 +164,7 @@ else if(localStorage.getItem( 'status' ) ==="byproduct"){
           </div>
         </div>
             )
-        })}
+        }): <div>Sorry No such Data are Avaialble</div>}
         
         
       

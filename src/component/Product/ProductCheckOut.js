@@ -1,7 +1,10 @@
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,} from 'react'
+import { useNavigate } from "react-router-dom";
 
 export default function ProductCheckOut() {
+  const navigate = useNavigate();
+  
 
   const [userDetail, setuserDetail] = useState({
     firstName:"",
@@ -51,6 +54,9 @@ export default function ProductCheckOut() {
      {
        console.log('savedaddress  =',json.useraddress)
        alert('your order has placed')
+       navigate("/");
+       
+
       
      }
      else{
@@ -206,7 +212,7 @@ export default function ProductCheckOut() {
                   return (
                     <div className="d-flex justify-content-between" key={index}>
                     <p>{data.productName}</p>
-                    <p>{data.productPrice}</p>
+                    <p>{data.productPrice*data.totalItem}</p>
                   </div>
                   )
                  })}
@@ -216,17 +222,17 @@ export default function ProductCheckOut() {
                 <div className="border-bottom pt-3 pb-2">
                   <div className="d-flex justify-content-between mb-3">
                     <h6>Subtotal</h6>
-                    <h6>{amount}</h6>
+                    <h6>{amount} &#x20B9;</h6>
                   </div>
                   <div className="d-flex justify-content-between">
                     <h6 className="font-weight-medium">Shipping</h6>
-                    <h6 className="font-weight-medium">$10</h6>
+                    <h6 className="font-weight-medium">10 &#x20B9;</h6>
                   </div>
                 </div>
                 <div className="pt-2">
                   <div className="d-flex justify-content-between mt-2">
                     <h5>Total</h5>
-                    <h5>{amount+10}</h5>
+                    <h5>{amount+10} &#x20B9;</h5>
                   </div>
                 </div>
               </div>

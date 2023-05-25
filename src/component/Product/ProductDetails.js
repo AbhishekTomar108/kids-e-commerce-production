@@ -119,7 +119,7 @@ const ProductDetails = () => {
                     </div>
                     <small className="pt-1">(99 Reviews)</small>
                   </div>
-                  <h3 className="font-weight-semi-bold mb-4">{localStorage.getItem('productPrice')}</h3>
+                  <h3 className="font-weight-semi-bold mb-4">Price : {localStorage.getItem('productPrice')} &#x20B9;</h3>
                   <p className="mb-4">Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit
                     clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea
                     Nonumy</p>

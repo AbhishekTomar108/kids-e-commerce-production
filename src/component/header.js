@@ -70,10 +70,8 @@ const Header = () => {
         if(filterData!==null){
             console.log('if running')
             setfilterData(null)
-            ContextValue.updateFilterProduct(false)
-            const headerContainer = document.getElementsByClassName('header-container')[0]
+            ContextValue.updateFilterProduct(false);
 
-            headerContainer.style.flexDirection = "column"
             // setSearchItem('')
            
         }
@@ -83,6 +81,7 @@ const Header = () => {
         console.log('seacrh input running')
         const searchInput = document.getElementsByClassName('search_input_div_input')[0]
         const headerContainer = document.getElementsByClassName('header-container')[0]
+        const crossSearchBar = document.getElementsByClassName('cross-to-search-bar')[0]
         console.log('style input =',searchInput)
         console.log('style input =',searchInput.style)
         console.log('style input =',searchInput.style.display)
@@ -93,10 +92,18 @@ const Header = () => {
         if(computedStyle.display==="none"){
 
             console.log('if seacrh input running')
-
+            crossSearchBar.style.display="inline"
             searchInput.style.display="block"
             headerContainer.style.flexDirection = "column"
         }
+    }
+
+    const hideSearchBar  =()=>{
+        const searchInput = document.getElementsByClassName('search_input_div_input')[0]
+        const headerContainer = document.getElementsByClassName('header-container')[0]
+
+        searchInput.style.display="none"
+        headerContainer.style.flexDirection = "row"
     }
 
   return (
@@ -124,7 +131,7 @@ const Header = () => {
                     value={searchitem}
                     onChange={e=>setSearchItem(e.target.value)}
                 />
-                    <img className='cross-to-search-bar' src={cross}/>
+                    <img className='cross-to-search-bar' onClick={hideSearchBar} src={cross}/>
                 </div>
                 {/* <div className='search_icon ' onClick={showSearchBar}> */}
                 <img className='search-cross-icon' onClick={filterData?removeSearch:showSearchBar} src={filterData?cross:search}/>
