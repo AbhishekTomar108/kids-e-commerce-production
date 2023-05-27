@@ -7,7 +7,9 @@ const ProductDetails = () => {
 
   const [addedItem, setaddedItem] = useState(1);
 
-
+  useEffect(()=>{
+    window.scrollTo({top:0})
+  },[])
 
 
   const addItem = ()=>{
@@ -187,7 +189,7 @@ const ProductDetails = () => {
                         </button>
                       </div>
                     </div>
-                    <button className="btn btn-primary px-3" onClick={submitUserProductCart}><i className="fa fa-shopping-cart mr-1" /> <Link to={localStorage.getItem('userStatus')?'/productcart':''}> Add To
+                    <button className="btn btn-primary px-3" onClick={submitUserProductCart}><i className="fa fa-shopping-cart mr-1" /> <Link to={localStorage.getItem('userStatus')==='true'?'/productcart':'/account'}> Add To
                       Cart </Link></button>
                   </div>
                   <div className="d-flex pt-2">

@@ -16,6 +16,7 @@ export default function ProductList(props) {
   useEffect(()=>{
 
     fetchProductData();
+    window.scrollTo({top:0})
     console.log('useeffect of product list')
   
 
@@ -38,13 +39,14 @@ export default function ProductList(props) {
 
     
     if(localStorage.getItem( 'status' ) ==="filterByAge"){
-      console.log('filter status ');
+      console.log('filter status by age');
       
        let filterdata = JSON.parse(localStorage.getItem('filterProductAge'))
+       ContextValue.updateFilterProductByAge(false);
       setproductdetails(filterdata);
         setprouctTitle(filterdata[0].category)
         setprouctTitleDesc(filterdata[0].description)
-        ContextValue.updateFilterProductByAge(false);
+        
     }
 
     if(localStorage.getItem( 'status' ) ==="filterdata"){

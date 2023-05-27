@@ -143,12 +143,19 @@ router.post(
   // ROUTE-3 post user address correspond to logged in user using post. login required
 
   router.post("/adduseraddress", fetchuser, async(req, res)=>{
-
+  console.log('next called')
     
     try{
       const { firstName, lastName, email, mobile, addressLine1, addressLine2, country, city, state, zipCode} = req.body;
     
+      let checkUser = await UserAddress.findOne({user:req.user.id})
 
+      if(checkUser){
+        console.log('checkuser ', checkUser, req.user)
+      }
+
+      
+      
       const useraddress= await UserAddress.create({
         firstName,
         lastName,

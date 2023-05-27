@@ -86,7 +86,7 @@ const updateTotalAmount =(productData)=>{
     <>
 
       {/* Breadcrumb Start */}
-      <div className="container-fluid">
+      {/* <div className="container-fluid">
           <div className="row px-xl-5">
             <div className="col-12">
               <nav className="breadcrumb bg-light mb-30">
@@ -96,10 +96,10 @@ const updateTotalAmount =(productData)=>{
               </nav>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* Breadcrumb End */}
      {/* Cart Start */}
-     <div className="container-fluid">
+     <div className="container-fluid" style={{marginTop:"50px"}}>
         <div className="row px-xl-5">
           <div className="col-lg-8 col-sm table-responsive mb-5">
             <table className="table table-light table-borderless table-hover text-center mb-0" style={{height:"10px !important", width:"6px"}}>
@@ -148,14 +148,14 @@ productName}</td>
             </table>
           </div>
           <div className="col-lg-4">
-            <form className="mb-30" action>
+            {/* <form className="mb-30" action>
               <div className="input-group">
                 <input type="text" className="form-control border-0 p-4" placeholder="Coupon Code" />
                 <div className="input-group-append">
                   <button className="btn btn-primary">Apply Coupon</button>
                 </div>
               </div>
-            </form>
+            </form> */}
             <h5 className="section-title position-relative text-uppercase mb-3"><span className="bg-secondary pr-3">Cart Summary</span></h5>
             <div className="bg-light p-30 mb-5">
               <div className="border-bottom pb-2">

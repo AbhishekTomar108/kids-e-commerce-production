@@ -70,6 +70,7 @@ const Header = () => {
         if(filterData!==null){
             console.log('if running')
             setfilterData(null)
+            setSearchItem('')
             ContextValue.updateFilterProduct(false);
 
             // setSearchItem('')

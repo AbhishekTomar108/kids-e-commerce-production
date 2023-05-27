@@ -253,7 +253,9 @@ const Bestseller = () => {
                          
                           <div className='add-to-cart-dropdown-container'>
                             <button className='quick-add-to-btn' onClick={()=>{quickViewProduct(data.image, data.productname) ; localStorage.setItem('productPrice',data.price); localStorage.setItem('productName',data.productname); localStorage.setItem('productImage',data.image) ; setquickViewStatus(true)}}>Quick View</button>
+
                              <Link to='/productdetails' onClick={()=>{localStorage.setItem('productPrice',data.price); localStorage.setItem('productName',data.productname); localStorage.setItem('productImage',data.image)}}><button className='quick-add-to-btn'>Add to Cart</button></Link>
+                             
                           </div>
                           </div>
                         

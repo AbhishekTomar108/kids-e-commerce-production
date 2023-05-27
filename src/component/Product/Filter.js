@@ -35,7 +35,7 @@ const Filter = () => {
         localStorage.setItem('status',"filterByAge");
         let currentProduct  = JSON.parse(localStorage.getItem('currentProductData'));
  
-        console.log('set age filter =',currentProduct)
+        // console.log('set age filter =',currentProduct)
 
         currentProduct = currentProduct.filter(data=>
             {return(

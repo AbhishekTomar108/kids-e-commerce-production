@@ -93,31 +93,31 @@ export default function ProductCheckOut() {
                 <div className="row">
                   <div className="col-md-6 form-group">
                     <label>First Name</label>
-                    <input className="form-control" type="text" placeholder="John" name="firstName"  value={userDetail.firstName} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
+                    <input className="form-control" type="text" required placeholder="John" name="firstName"  value={userDetail.firstName} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
                   </div>
                   <div className="col-md-6 form-group">
                     <label>Last Name</label>
-                    <input className="form-control" type="text" placeholder="Doe" name="lastName"   value={userDetail.lastName} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})}/>
+                    <input className="form-control" type="text" required placeholder="Doe" name="lastName"   value={userDetail.lastName} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})}/>
                   </div>
                   <div className="col-md-6 form-group">
                     <label>E-mail</label>
-                    <input className="form-control" type="text" placeholder="example@email.com" name="email"   value={userDetail.email} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
+                    <input className="form-control" type="email" required placeholder="example@email.com" name="email"   value={userDetail.email} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
                   </div>
                   <div className="col-md-6 form-group">
                     <label>Mobile No</label>
-                    <input className="form-control" type="text" placeholder="+123 456 789" name="mobile"   value={userDetail.mobile} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
+                    <input className="form-control" type="Number" required placeholder="+123 456 789" name="mobile"   value={userDetail.mobile} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
                   </div>
                   <div className="col-md-6 form-group">
                     <label>Address Line 1</label>
-                    <input className="form-control" type="text" placeholder="123 Street" name="addressLine1"   value={userDetail.addressLine1} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
+                    <input className="form-control" type="text" required placeholder="123 Street" name="addressLine1"   value={userDetail.addressLine1} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
                   </div>
                   <div className="col-md-6 form-group">
                     <label>Address Line 2</label>
-                    <input className="form-control" type="text" placeholder="123 Street" name="addressLine2"   value={userDetail.addressLine2} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
+                    <input className="form-control" type="text" required placeholder="123 Street" name="addressLine2"   value={userDetail.addressLine2} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
                   </div>
                   <div className="col-md-6 form-group">
                     <label>Country</label>
-                    <select className="custom-select"  name="country"   value={userDetail.country} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})}>
+                    <select className="custom-select" required name="country"   value={userDetail.country} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})}>
                       <option selected>United States</option>
                       <option>Afghanistan</option>
                       <option>Albania</option>
@@ -126,82 +126,31 @@ export default function ProductCheckOut() {
                   </div>
                   <div className="col-md-6 form-group">
                     <label>City</label>
-                    <input className="form-control" type="text" placeholder="New York" name="city"   value={userDetail.city} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
+                    <input className="form-control" type="text" required placeholder="New York" name="city"   value={userDetail.city} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
                   </div>
                   <div className="col-md-6 form-group">
                     <label>State</label>
-                    <input className="form-control" type="text" placeholder="New York" name="state"   value={userDetail.state} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
+                    <input className="form-control" type="text" required placeholder="New York" name="state"   value={userDetail.state} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
                   </div>
                   <div className="col-md-6 form-group">
                     <label>ZIP Code</label>
-                    <input className="form-control" type="text" placeholder={123} name="zipCode"   value={userDetail.zipCode} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
+                    <input className="form-control" type="Number" required placeholder={123} name="zipCode"   value={userDetail.zipCode} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
                   </div>
-                  <div className="col-md-12 form-group">
+                  {/* <div className="col-md-12 form-group">
                     <div className="custom-control custom-checkbox">
                       <input type="checkbox" className="custom-control-input" id="newaccount" />
                       <label className="custom-control-label" htmlFor="newaccount">Create an account</label>
                     </div>
-                  </div>
-                  <div className="col-md-12">
+                  </div> */}
+                  {/* <div className="col-md-12">
                     <div className="custom-control custom-checkbox">
                       <input type="checkbox" className="custom-control-input" id="shipto" />
                       <label className="custom-control-label" htmlFor="shipto" data-toggle="collapse" data-target="#shipping-address">Ship to different address</label>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
-              <div className="collapse mb-5" id="shipping-address">
-                <h5 className="section-title position-relative text-uppercase mb-3"><span className="bg-secondary pr-3">Shipping Address</span></h5>
-                <div className="bg-light p-30">
-                  <div className="row">
-                    <div className="col-md-6 form-group">
-                      <label>First Name</label>
-                      <input className="form-control" type="text" placeholder="John" />
-                    </div>
-                    <div className="col-md-6 form-group">
-                      <label>Last Name</label>
-                      <input className="form-control" type="text" placeholder="Doe" />
-                    </div>
-                    <div className="col-md-6 form-group">
-                      <label>E-mail</label>
-                      <input className="form-control" type="text" placeholder="example@email.com" />
-                    </div>
-                    <div className="col-md-6 form-group">
-                      <label>Mobile No</label>
-                      <input className="form-control" type="text" placeholder="+123 456 789" />
-                    </div>
-                    <div className="col-md-6 form-group">
-                      <label>Address Line 1</label>
-                      <input className="form-control" type="text" placeholder="123 Street" />
-                    </div>
-                    <div className="col-md-6 form-group">
-                      <label>Address Line 2</label>
-                      <input className="form-control" type="text" placeholder="123 Street" />
-                    </div>
-                    <div className="col-md-6 form-group">
-                      <label>Country</label>
-                      <select className="custom-select">
-                        <option selected>United States</option>
-                        <option>Afghanistan</option>
-                        <option>Albania</option>
-                        <option>Algeria</option>
-                      </select>
-                    </div>
-                    <div className="col-md-6 form-group">
-                      <label>City</label>
-                      <input className="form-control" type="text" placeholder="New York" />
-                    </div>
-                    <div className="col-md-6 form-group">
-                      <label>State</label>
-                      <input className="form-control" type="text" placeholder="New York" />
-                    </div>
-                    <div className="col-md-6 form-group">
-                      <label>ZIP Code</label>
-                      <input className="form-control" type="text" placeholder={123} />
-                    </div>
-                  </div>
-                </div>
-              </div>
+              
             </div>
             <div className="col-lg-4">
               <h5 className="section-title position-relative text-uppercase mb-3"><span className="bg-secondary pr-3">Order Total</span></h5>
@@ -242,21 +191,21 @@ export default function ProductCheckOut() {
                   <div className="form-group">
                     <div className="custom-control custom-radio">
                       <input type="radio" className="custom-control-input" name="payment" id="paypal" />
-                      <label className="custom-control-label" htmlFor="paypal">Paypal</label>
+                      <label className="custom-control-label" htmlFor="paypal">Online Payment</label>
                     </div>
                   </div>
                   <div className="form-group">
                     <div className="custom-control custom-radio">
                       <input type="radio" className="custom-control-input" name="payment" id="directcheck" />
-                      <label className="custom-control-label" htmlFor="directcheck">Direct Check</label>
+                      <label className="custom-control-label" htmlFor="directcheck">Cash on Delivery</label>
                     </div>
                   </div>
-                  <div className="form-group mb-4">
+                  {/* <div className="form-group mb-4">
                     <div className="custom-control custom-radio">
                       <input type="radio" className="custom-control-input" name="payment" id="banktransfer" />
                       <label className="custom-control-label" htmlFor="banktransfer">Bank Transfer</label>
                     </div>
-                  </div>
+                  </div> */}
                   <button className="btn btn-block btn-primary font-weight-bold py-3" onClick={submitOrder}>Place Order</button>
                 </div>
               </div>
