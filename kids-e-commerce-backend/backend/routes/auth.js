@@ -178,6 +178,49 @@ router.post(
     }
   })
 
+  
+// Route to check user address is already existed or not
+
+router.get('/checkuseraddress',fetchuser,async(req,res)=>{
+
+    const checkUser = await UserAddress.findOne({user:req.user.id})
+
+    if(checkUser){
+      res.send({"userstatus":true,"user":checkUser});
+    }
+    else{
+      res.send({"userstatus":false,"user":checkUser})
+    }
+
+  })
+
+  // ROUTE to update user address
+
+  router.post('/updateaddress/:id',fetchuser,async(req,res)=>{
+    const { firstName, lastName, email, mobile, addressLine1, addressLine2, country, city, state, zipCode} = req.body;
+
+
+    // const updateData = await UserAddress.findByIdAndUpdate(req.params.id,{$set:
+    //   firstName,
+    //   lastName,
+    //   email,
+    //   mobile,
+    //   addressLine1,
+    //   addressLine2,
+    //   country,
+    //   city,
+    //   state,
+    //   zipCode,
+    //   user:req.user.id
+    // })
+
+    res.send("hello");
+
+  })
+
+  
+  // Route to send mail
+
   router.get('/mail',sendmail)
 
 

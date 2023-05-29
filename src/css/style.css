@@ -14,6 +14,14 @@
     flex-direction: column;
 }
 
+.d-flex{
+    display: flex;
+}
+
+.g-gap{
+    column-gap: 20px;
+}
+
 body{
     font-family: 'Roboto', sans-serif; 
 }
@@ -1067,6 +1075,13 @@ a{
 
 .card-text{
     height: 82px;
+}
+
+.edit-submit-btn{
+    padding: 10px 30px;
+    background: #329910;
+    color: white;
+    border-radius: 5px;
 }
 
 

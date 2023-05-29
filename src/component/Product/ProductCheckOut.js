@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState,} from 'react'
+import React, { useEffect, useState, useRef} from 'react'
 import { useNavigate } from "react-router-dom";
 
 export default function ProductCheckOut() {
@@ -19,10 +19,19 @@ export default function ProductCheckOut() {
     zipCode:""
   })
 
+ 
+
   const [productData, setproductData] = useState();
   const [amount, setAmount]  =useState(0);
+  const [userAddressStatus, setuserAddressStatus]  =useState(false);
+  const [updateAddressStatus, setupdateAddressStatus]  =useState(false);
+  const editBtn = useRef()
+
 
   useEffect(()=>{
+
+    checkUserAddress()
+
     const dataproduct = JSON.parse(localStorage.getItem('productCartData'))
     setproductData(dataproduct)
     console.log("product data ", productData);
@@ -35,7 +44,57 @@ export default function ProductCheckOut() {
     setAmount(finalTotal);
   },[])
 
-  const submitOrder = async()=>{
+  const checkUserAddress = async()=>{
+   
+    try
+    { const response = await fetch("http://localhost:5000/api/auth/checkuseraddress", {
+       method: 'GET', 
+       
+       headers: {
+         'Content-Type': 'application/json',
+         'auth-token': localStorage.getItem('KidsCommerce')
+       },
+       
+     });
+
+     const json = await response.json();
+
+     if(json.userstatus){
+      console.log('user status from if=',json.user)
+      console.log('address id =', json.user._id)
+      setuserDetail(json.user)
+      setuserAddressStatus(true)
+     }
+
+     else{
+      console.log('user status =',json.user)
+     }
+  
+}
+catch{
+  console.log("sorry there is some error occured")  
+}
+}
+
+const updateAddress = async()=>{
+
+}
+
+const handleClick = () => {
+  if (userAddressStatus) {
+    editBtn.current.style.display = "none";
+    setuserAddressStatus(false);
+    setupdateAddressStatus(true)
+  } else {
+    submitAddress();
+  }
+};
+
+const submitOrder = async()=>{
+
+}
+
+  const submitAddress = async()=>{
     console.log('submit order data =', userDetail)
     try
     { const response = await fetch("http://localhost:5000/api/auth/adduseraddress", {
@@ -54,7 +113,7 @@ export default function ProductCheckOut() {
      {
        console.log('savedaddress  =',json.useraddress)
        alert('your order has placed')
-       navigate("/");
+      //  navigate("/");
        
 
       
@@ -93,31 +152,31 @@ export default function ProductCheckOut() {
                 <div className="row">
                   <div className="col-md-6 form-group">
                     <label>First Name</label>
-                    <input className="form-control" type="text" required placeholder="John" name="firstName"  value={userDetail.firstName} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
+                    <input className="form-control" disabled={userAddressStatus} type="text" required placeholder="John" name="firstName"  value={userDetail.firstName} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
                   </div>
                   <div className="col-md-6 form-group">
                     <label>Last Name</label>
-                    <input className="form-control" type="text" required placeholder="Doe" name="lastName"   value={userDetail.lastName} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})}/>
+                    <input className="form-control" disabled={userAddressStatus} type="text" required placeholder="Doe" name="lastName"   value={userDetail.lastName} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})}/>
                   </div>
                   <div className="col-md-6 form-group">
                     <label>E-mail</label>
-                    <input className="form-control" type="email" required placeholder="example@email.com" name="email"   value={userDetail.email} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
+                    <input className="form-control" disabled={userAddressStatus} type="email" required placeholder="example@email.com" name="email"   value={userDetail.email} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
                   </div>
                   <div className="col-md-6 form-group">
                     <label>Mobile No</label>
-                    <input className="form-control" type="Number" required placeholder="+123 456 789" name="mobile"   value={userDetail.mobile} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
+                    <input className="form-control" disabled={userAddressStatus} type="Number" required placeholder="+123 456 789" name="mobile"   value={userDetail.mobile} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
                   </div>
                   <div className="col-md-6 form-group">
                     <label>Address Line 1</label>
-                    <input className="form-control" type="text" required placeholder="123 Street" name="addressLine1"   value={userDetail.addressLine1} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
+                    <input className="form-control" disabled={userAddressStatus} type="text" required placeholder="123 Street" name="addressLine1"   value={userDetail.addressLine1} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
                   </div>
                   <div className="col-md-6 form-group">
                     <label>Address Line 2</label>
-                    <input className="form-control" type="text" required placeholder="123 Street" name="addressLine2"   value={userDetail.addressLine2} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
+                    <input className="form-control" disabled={userAddressStatus} type="text" required placeholder="123 Street" name="addressLine2"   value={userDetail.addressLine2} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
                   </div>
                   <div className="col-md-6 form-group">
                     <label>Country</label>
-                    <select className="custom-select" required name="country"   value={userDetail.country} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})}>
+                    <select className="custom-select" disabled={userAddressStatus} required name="country"   value={userDetail.country} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})}>
                       <option selected>United States</option>
                       <option>Afghanistan</option>
                       <option>Albania</option>
@@ -126,15 +185,15 @@ export default function ProductCheckOut() {
                   </div>
                   <div className="col-md-6 form-group">
                     <label>City</label>
-                    <input className="form-control" type="text" required placeholder="New York" name="city"   value={userDetail.city} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
+                    <input className="form-control" disabled={userAddressStatus} type="text" required placeholder="New York" name="city"   value={userDetail.city} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
                   </div>
                   <div className="col-md-6 form-group">
                     <label>State</label>
-                    <input className="form-control" type="text" required placeholder="New York" name="state"   value={userDetail.state} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
+                    <input className="form-control" disabled={userAddressStatus} type="text" required placeholder="New York" name="state"   value={userDetail.state} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
                   </div>
                   <div className="col-md-6 form-group">
                     <label>ZIP Code</label>
-                    <input className="form-control" type="Number" required placeholder={123} name="zipCode"   value={userDetail.zipCode} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
+                    <input className="form-control" disabled={userAddressStatus} type="Number" required placeholder={123} name="zipCode"   value={userDetail.zipCode} onChange={(e)=>setuserDetail({...userDetail,[e.target.name]:e.target.value})} />
                   </div>
                   {/* <div className="col-md-12 form-group">
                     <div className="custom-control custom-checkbox">
@@ -150,8 +209,12 @@ export default function ProductCheckOut() {
                   </div> */}
                 </div>
               </div>
-              
+            <div className='d-flex g-gap'>
+           <div ref={editBtn} ><buton className='edit-submit-btn' onClick={handleClick}>{userAddressStatus?"Edit":"Submit Addres Details"}</buton></div> 
+           {updateAddressStatus && <div><buton className='edit-submit-btn' onClick={updateAddress}>Update Address</buton></div> }
             </div>
+            </div>  
+
             <div className="col-lg-4">
               <h5 className="section-title position-relative text-uppercase mb-3"><span className="bg-secondary pr-3">Order Total</span></h5>
               <div className="bg-light p-30 mb-5">

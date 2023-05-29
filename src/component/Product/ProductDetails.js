@@ -59,7 +59,7 @@ const ProductDetails = () => {
     }
 
     else{
-      console.log('nahi jayega aage');
+      console.log('cannot procedd further');
     }
 
   }
