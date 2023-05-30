@@ -200,21 +200,21 @@ router.get('/checkuseraddress',fetchuser,async(req,res)=>{
     const { firstName, lastName, email, mobile, addressLine1, addressLine2, country, city, state, zipCode} = req.body;
 
 
-    // const updateData = await UserAddress.findByIdAndUpdate(req.params.id,{$set:
-    //   firstName,
-    //   lastName,
-    //   email,
-    //   mobile,
-    //   addressLine1,
-    //   addressLine2,
-    //   country,
-    //   city,
-    //   state,
-    //   zipCode,
-    //   user:req.user.id
-    // })
+    const updateData = await UserAddress.findByIdAndUpdate(req.params.id,{$set:
+      {firstName,
+      lastName,
+      email,
+      mobile,
+      addressLine1,
+      addressLine2,
+      country,
+      city,
+      state,
+      zipCode,
+      user:req.user.id}
+    })
 
-    res.send("hello");
+    res.send(updateData);
 
   })
 

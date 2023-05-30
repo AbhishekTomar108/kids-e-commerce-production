@@ -25,6 +25,7 @@ export default function ProductCheckOut() {
   const [amount, setAmount]  =useState(0);
   const [userAddressStatus, setuserAddressStatus]  =useState(false);
   const [updateAddressStatus, setupdateAddressStatus]  =useState(false);
+  const [addressId, setaddressId]  = useState();
   const editBtn = useRef()
 
 
@@ -62,6 +63,7 @@ export default function ProductCheckOut() {
      if(json.userstatus){
       console.log('user status from if=',json.user)
       console.log('address id =', json.user._id)
+      setaddressId(json.user._id);
       setuserDetail(json.user)
       setuserAddressStatus(true)
      }
@@ -77,6 +79,27 @@ catch{
 }
 
 const updateAddress = async()=>{
+  console.log('address id from update=', addressId)
+  const data  = await fetch(`http://localhost:5000/api/auth/updateaddress/${addressId}`,{
+    method: 'POST', 
+       
+    headers: {
+      'Content-Type': 'application/json',
+      'auth-token': localStorage.getItem('KidsCommerce')
+    },
+    body: JSON.stringify({firstName:userDetail.firstName,lastName:userDetail.lastName,email:userDetail.email,mobile:userDetail.mobile,addressLine1:userDetail.addressLine1,addressLine2:userDetail.addressLine2,country:userDetail.country,city:userDetail.city,state:userDetail.state,zipCode:userDetail.zipCode}) 
+
+  });
+
+ 
+  const response = await data.json()
+  console.log('update address = ',response)
+  setuserAddressStatus(true)
+  setupdateAddressStatus(false)
+  editBtn.current.style.display = "block";
+  // navigate('/')
+
+  
 
 }
 
@@ -111,9 +134,10 @@ const submitOrder = async()=>{
      console.log(json);
      if(json.success)
      {
+      
        console.log('savedaddress  =',json.useraddress)
        alert('your order has placed')
-      //  navigate("/");
+       navigate("/proceedtocheckout");
        
 
       
