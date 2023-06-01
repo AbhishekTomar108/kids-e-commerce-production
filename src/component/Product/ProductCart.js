@@ -11,28 +11,71 @@ export default function ProductCart() {
       fetchUserSavedProduct();
   },[])
 
-  const addItem = (index)=>{
+  const addItem = async (index,productPrice)=>{
 
     const additem = [...addedItem];
     additem[index] = additem[index]+1;
     setaddedItem(additem)
+
+    let data  = await fetch(`http://localhost:5000/api/product/updateproductcart/${userProductData[index]._id}`,
+    {method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+     body:JSON.stringify({totalItem:additem[index]})
+  }
+    )
+
+    let total  = productPrice*1;
+   
+    total  = totalAmount+total;
+    settotalAmount(Math.trunc(total))
+    console.log(await data.json())
  
   
 }
-const removeItem = (index)=>{
+const removeItem = async(index,productPrice)=>{
   if(addedItem[index]>1){
 
     const additem = [...addedItem];
     additem[index] = additem[index]-1
     setaddedItem(additem)
+    console.log('added item =', additem[index])
+
+    let data  = await fetch(`http://localhost:5000/api/product/updateproductcart/${userProductData[index]._id}`,
+    {method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+     body:JSON.stringify({totalItem:additem[index]})
+  }
+    )
+
+    let total  = productPrice;
+    console.log(productPrice)
+    total  = totalAmount-total;
+   
+    settotalAmount(Math.trunc(total))
+    console.log(await data.json())
+    
+    
   }
 }
 
 const removeProduct = (Index)=>{
+
+  fetch(`http://localhost:5000/api/product/removeproductcart/${userProductData[Index]._id}`,
+  {method: 'POST',}
+  )
+  console.log('product id =',userProductData[Index]._id)
  
   const productData = [...userProductData]
   productData.splice(Index,1)
   setuserProductData(productData);
+
+  
+
+  
 }
 
 const updateTotalAmount =(productData)=>{
@@ -126,13 +169,13 @@ productName}</td>
                   <td className="align-middle">
                     <div className="input-group quantity mx-auto" style={{width: '110px',alignItems:'center'}}>
                       <div className="input-group-btn">
-                        <button className="btn btn-sm btn-primary btn-minus" onClick={()=>removeItem(index)}>
+                        <button className="btn btn-sm btn-primary btn-minus" onClick={()=>removeItem(index,data.productPrice)}>
                           <i className="fa fa-minus" />
                         </button>
                       </div>
                       <input type="text" className="form-control form-control-sm bg-secondary border-0 text-center" style={{padding:"0"}} value={addedItem[index]} />
                       <div className="input-group-btn">
-                        <button className="btn btn-sm btn-primary btn-plus" onClick={()=>addItem(index)}>
+                        <button className="btn btn-sm btn-primary btn-plus" onClick={()=>addItem(index,data.productPrice)}>
                           <i className="fa fa-plus" />
                         </button>
                       </div>

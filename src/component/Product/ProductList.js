@@ -55,6 +55,7 @@ export default function ProductList(props) {
       console.log('filter from function =',filterdata)
 
       localStorage.setItem('currentProductData',JSON.stringify(filterdata))
+      ContextValue.updateFilterProduct(false)
       setproductdetails(filterdata);
         setprouctTitle(filterdata[0].category)
         setprouctTitleDesc(filterdata[0].description)

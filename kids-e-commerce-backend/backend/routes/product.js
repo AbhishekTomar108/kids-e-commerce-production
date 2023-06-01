@@ -99,6 +99,8 @@ router.get('/fetchalluserproduct',fetchuser, async (req,res)=>
     // res.json([])
 })
 
+
+
 router.get('/products/product', async(req, res) => {
   const searchQuery = req.query; // Get the search query from the request parameters
 
@@ -109,6 +111,69 @@ router.get('/products/product', async(req, res) => {
   res.json(productdata);
 });
 
+
+
+//ROUTE to remove product from ProductCart Collection by its Id
+
+router.post('/removeproductcart/:id', async (req,res)=>
+{
+  
+
+    try{
+  const productCart = await ProductCart.deleteOne({ _id: req.params.id }).exec();
+   
+   res.json({"success":true, productCart:productCart});
+    }
+    catch(error){
+        console.error(error.message)
+        res.send({"error":error.message})
+    }
+   
+})
+
+// ROUTE to update ProductCart collection 
+
+
+router.post('/updateproductcart/:id', async (req,res)=>
+{
+  const  id  = req.params.id;
+  const  totalitem  = req.body;
+  console.log(totalitem)
+
+  try {
+    const updatedProductCart = await ProductCart.findByIdAndUpdate(
+      id,
+      {$set:totalitem },
+      { new: true }
+    ).exec();
+
+   
+
+    if (!updatedProductCart) {
+      return res.status(404).send('ProductCart not found');
+    }
+
+    res.send(updatedProductCart);
+  } catch (error) {
+    res.status(500).send('Error updating ProductCart');
+  }
+  
+
+  //   try{
+  //     const updatedProductCart = await ProductCart.findByIdAndUpdate(
+  //       id,
+  //       { totalitem },
+  //       { new: true }
+  //     ).exec();
+   
+  //  res.json({"success":true, productCart:updatedProductCart});
+  //   }
+  //   catch(error){
+  //       console.error(error.message)
+  //       res.send({"error":error.message})
+  //   }
+   
+})
 
 
 module.exports = router;
