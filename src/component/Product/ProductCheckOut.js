@@ -1,6 +1,8 @@
 
 import React, { useEffect, useState, useRef} from 'react'
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+
+
 
 export default function ProductCheckOut() {
   const navigate = useNavigate();
@@ -113,7 +115,163 @@ const handleClick = () => {
   }
 };
 
+
+// const paymentfunc = async()=>{
+//   console.log('payment func is running')
+
+//   const data = await fetch('http://localhost:5000/api/product/payment',{
+//     method:"POST"
+//   })
+
+//   console.log('payment data =',await data.json())
+
+// }
+
+const loadScript = (src)=>{
+
+  console.log('on load running')
+  return new Promise((resolve)=>{  const script = document.createElement('script')
+  script.src = src
+
+  script.onload = ()=>{
+    resolve(true)
+  }
+
+  script.onerror  = ()=>{
+    resolve(false)
+  }
+
+  document.body.appendChild(script)
+})
+
+}
+
+
+
+const displayRazorpay = ()=>{
+
+  var options = {
+    "key": "rzp_test_wVnLdv07rf1EF2", // Enter the Key ID generated from the Dashboard
+    "amount": "1000",
+    "currency": "INR",
+    "description": "Acme Corp",
+    "image": "https://s3.amazonaws.com/rzp-mobile/images/rzp.jpg",
+    "prefill":
+    {
+      "email": "gaurv.kumar@example.com",
+      "contact": +919900000,
+    },
+    config: {
+      display: {
+        blocks: {
+          utib: { //name for Axis block
+            name: "Pay using Axis Bank",
+            instruments: [
+              {
+                method: "card",
+                issuers: ["UTIB"]
+              },
+              {
+                method: "netbanking",
+                banks: ["UTIB"]
+              },
+            ]
+          },
+          other: { //  name for other block
+            name: "Other Payment modes",
+            instruments: [
+              {
+                method: "card",
+                issuers: ["ICIC"]
+              },
+              {
+                method: 'netbanking',
+              },
+              {
+                method: "upi"
+                }
+            ]
+          }
+        },
+        // hide: [
+        //   {
+        //   method: "upi"
+        //   }
+        // ],
+        sequence: ["block.utib", "block.other"],
+        preferences: {
+          show_default_blocks: false // Should Checkout show its default blocks?
+        }
+      }
+    },
+    "handler": function (response) {
+      alert(response.razorpay_payment_id);
+    },
+    "modal": {
+      "ondismiss": function () {
+        if (confirm("Are you sure, you want to close the form?")) {
+          txt = "You pressed OK!";
+          console.log("Checkout form closed by the user");
+        } else {
+          txt = "You pressed Cancel!";
+          console.log("Complete the Payment")
+        }
+      }
+    }
+  };
+  var rzp1 = new Razorpay(options);
+  rzp1.open();
+}
+
+
+
+const paymentfunc  =async(paymentamount)=>{
+
+  return new Promise((resolve)=>{
+    const script  = document.createElement('script')
+    script.src = "https://checkout.razorpay.com/v1/checkout.js"
+    document.body.appendChild(script)
+  
+     script.onload  =displayRazorpay
+  })
+ 
+
+}
+
+
+
+
+// const paymentfunc = async(paymentamount)=>{
+// console.log('payment is running')
+
+//   const res  = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
+
+//   if(!res){
+//     alert('you are offlie')
+//     return
+//   }
+// }
+
+
 const submitOrder = async()=>{
+  console.log('submit running')
+
+  const data = await fetch('http://localhost:5000/api/product/productcartsaved',{
+    method:'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'auth-token': localStorage.getItem('KidsCommerce')
+    },
+    body:JSON.stringify({productCart:JSON.parse(localStorage.getItem('productCartData'))})
+  })
+
+   const savedData = await data.json();
+
+   console.log('saved data =',savedData)
+   alert('product has been placed')
+  //  navigate('/')
+   
+   paymentfunc(50000)
   
 
 }

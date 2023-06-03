@@ -1,5 +1,6 @@
 const express = require("express");
 const ProductCart = require("../models/ProductCart");
+const savedProductCart = require("../models/savedProductCart");
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const { body, validationResult } = require("express-validator");
@@ -173,6 +174,35 @@ router.post('/updateproductcart/:id', async (req,res)=>
   //       res.send({"error":error.message})
   //   }
    
+})
+
+router.post('/productcartsaved',fetchuser, async(req,res)=>{
+
+
+   const savedproductdata =  await Promise.all(req.body.productCart.map(async(data)=>{
+
+
+    const productName = data.productName;
+    const totalItem = data.totalItem;
+    const productPrice =  data.productPrice;
+
+    console.log('inside map',data.productName )
+
+    const saved  = await savedProductCart.create({
+      productName,
+      totalItem,
+      productPrice,
+      user: req.user.id
+    })
+    return saved
+  }))
+  
+  res.send(savedproductdata)
+
+})
+
+router.post('/payment',async(req,res)=>{
+  res.send({"hello":"hello"})
 })
 
 
