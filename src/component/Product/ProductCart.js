@@ -17,7 +17,7 @@ export default function ProductCart() {
     additem[index] = additem[index]+1;
     setaddedItem(additem)
 
-    let data  = await fetch(`http://localhost:5000/api/product/updateproductcart/${userProductData[index]._id}`,
+    let data  = await fetch(`https://commerce-backend-test.onrender.com/api/product/updateproductcart/${userProductData[index]._id}`,
     {method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -42,7 +42,7 @@ const removeItem = async(index,productPrice)=>{
     setaddedItem(additem)
     console.log('added item =', additem[index])
 
-    let data  = await fetch(`http://localhost:5000/api/product/updateproductcart/${userProductData[index]._id}`,
+    let data  = await fetch(`https://commerce-backend-test.onrender.com/api/product/updateproductcart/${userProductData[index]._id}`,
     {method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -62,9 +62,9 @@ const removeItem = async(index,productPrice)=>{
   }
 }
 
-const removeProduct = (Index)=>{
+const removeProduct = (Index,totalPrice)=>{
 
-  fetch(`http://localhost:5000/api/product/removeproductcart/${userProductData[Index]._id}`,
+  fetch(`https://commerce-backend-test.onrender.com/api/product/removeproductcart/${userProductData[Index]._id}`,
   {method: 'POST',}
   )
   console.log('product id =',userProductData[Index]._id)
@@ -73,8 +73,9 @@ const removeProduct = (Index)=>{
   productData.splice(Index,1)
   setuserProductData(productData);
 
-  
-
+  let total  = totalAmount -  Math.trunc(totalPrice);
+  console.log('total ',Math.trunc(totalPrice),totalAmount)
+  settotalAmount(total);
   
 }
 
@@ -90,7 +91,7 @@ const updateTotalAmount =(productData)=>{
 
   const fetchUserSavedProduct  =async()=>{
     try
-   { const response = await fetch("http://localhost:5000/api/product/fetchalluserproduct", {
+   { const response = await fetch("https://commerce-backend-test.onrender.com/api/product/fetchalluserproduct", {
         method: 'GET', 
         
         headers: {
@@ -182,7 +183,7 @@ productName}</td>
                     </div>
                   </td>
                   <td className="align-middle">{data.productPrice*data.totalItem}</td>
-                  <td className="align-middle"><button className="btn btn-sm btn-danger" onClick={()=>removeProduct(index)}><i className="fa fa-times" /></button></td>
+                  <td className="align-middle"><button className="btn btn-sm btn-danger" onClick={()=>removeProduct(index,(data.productPrice*data.totalItem))}><i className="fa fa-times" /></button></td>
                 </tr>
                   )
                 }) }
@@ -207,14 +208,14 @@ productName}</td>
                   <h6>{totalAmount} &#x20B9;</h6>
                 </div>
                 <div className="d-flex justify-content-between">
-                  <h6 className="font-weight-medium">Shipping</h6>
-                  <h6 className="font-weight-medium">10 &#x20B9;</h6>
+                 { totalAmount!==0 && <> <h6 className="font-weight-medium">Shipping</h6>
+                  <h6 className="font-weight-medium">10 &#x20B9;</h6> </>}
                 </div>
               </div>
               <div className="pt-2">
                 <div className="d-flex justify-content-between mt-2">
                   <h5>Total</h5>
-                  <h5>{totalAmount+10} &#x20B9;</h5>
+                  <h5>{totalAmount!==0?totalAmount+10:0} &#x20B9;</h5>
                 </div>
                 <button className="btn btn-block btn-primary font-weight-bold my-3 py-3"> <Link to="/proceedtocheckout"> Proceed To Checkout </Link> </button>
               </div>

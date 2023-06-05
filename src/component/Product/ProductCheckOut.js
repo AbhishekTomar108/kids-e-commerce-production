@@ -45,12 +45,13 @@ export default function ProductCheckOut() {
 
     const finalTotal = Math.trunc(total);
     setAmount(finalTotal);
+    localStorage.setItem('totalamount',finalTotal)
   },[])
 
   const checkUserAddress = async()=>{
    
     try
-    { const response = await fetch("http://localhost:5000/api/auth/checkuseraddress", {
+    { const response = await fetch("https://commerce-backend-test.onrender.com/api/auth/checkuseraddress", {
        method: 'GET', 
        
        headers: {
@@ -82,7 +83,7 @@ catch{
 
 const updateAddress = async()=>{
   console.log('address id from update=', addressId)
-  const data  = await fetch(`http://localhost:5000/api/auth/updateaddress/${addressId}`,{
+  const data  = await fetch(`https://commerce-backend-test.onrender.com/api/auth/updateaddress/${addressId}`,{
     method: 'POST', 
        
     headers: {
@@ -152,14 +153,14 @@ const displayRazorpay = ()=>{
 
   var options = {
     "key": "rzp_test_wVnLdv07rf1EF2", // Enter the Key ID generated from the Dashboard
-    "amount": "1000",
+    "amount": `${localStorage.getItem('totalamount')*100}`,
     "currency": "INR",
     "description": "Acme Corp",
     "image": "https://s3.amazonaws.com/rzp-mobile/images/rzp.jpg",
     "prefill":
     {
       "email": "gaurv.kumar@example.com",
-      "contact": +919900000,
+      "contact": +91,
     },
     config: {
       display: {
@@ -253,10 +254,10 @@ const paymentfunc  =async(paymentamount)=>{
 // }
 
 
-const submitOrder = async()=>{
+const submitOrder = async(amount)=>{
   console.log('submit running')
 
-  const data = await fetch('http://localhost:5000/api/product/productcartsaved',{
+  const data = await fetch('https://commerce-backend-test.onrender.com/api/product/productcartsaved',{
     method:'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -271,7 +272,7 @@ const submitOrder = async()=>{
    alert('product has been placed')
   //  navigate('/')
    
-   paymentfunc(50000)
+   paymentfunc(amount*100)
   
 
 }
@@ -279,7 +280,7 @@ const submitOrder = async()=>{
   const submitAddress = async()=>{
     console.log('submit order data =', userDetail)
     try
-    { const response = await fetch("http://localhost:5000/api/auth/adduseraddress", {
+    { const response = await fetch("https://commerce-backend-test.onrender.com/api/auth/adduseraddress", {
        method: 'POST', 
        
        headers: {
@@ -452,7 +453,7 @@ const submitOrder = async()=>{
                       <label className="custom-control-label" htmlFor="banktransfer">Bank Transfer</label>
                     </div>
                   </div> */}
-                  <button className="btn btn-block btn-primary font-weight-bold py-3" onClick={submitOrder}>Place Order</button>
+                  <button className="btn btn-block btn-primary font-weight-bold py-3" onClick={()=>submitOrder(amount)}>Place Order</button>
                 </div>
               </div>
             </div>

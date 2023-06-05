@@ -12,7 +12,7 @@ const SignUp = () => {
     if(user.password===user.confirmpassword)
      {
       try
-    { const response = await fetch("http://localhost:5000/api/auth", {
+    { const response = await fetch("https://commerce-backend-test.onrender.com/api/auth", {
        method: 'POST', 
        
        headers: {

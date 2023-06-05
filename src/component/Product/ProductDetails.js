@@ -32,7 +32,7 @@ const ProductDetails = () => {
     if(localStorage.getItem('userStatus')==="true"){
       console.log('you can proceed')
 
-      const response = await fetch("http://localhost:5000/api/product/addproduct", {
+      const response = await fetch("https://commerce-backend-test.onrender.com/api/product/addproduct", {
         method: 'POST', 
         
         headers: {

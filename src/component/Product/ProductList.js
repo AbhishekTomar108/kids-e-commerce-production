@@ -34,7 +34,7 @@ export default function ProductList(props) {
     // }
 
     // else{
-     let data = await fetch('http://localhost:5000/api/product/products');
+     let data = await fetch('https://commerce-backend-test.onrender.com/api/product/products');
     let parsedData  = await data.json();
 
     
