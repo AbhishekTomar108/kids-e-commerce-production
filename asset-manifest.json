@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/kids-e-commerce-production/static/css/main.98a98d48.css",
-    "main.js": "/kids-e-commerce-production/static/js/main.1abed84a.js",
+    "main.js": "/kids-e-commerce-production/static/js/main.8c29911f.js",
     "static/js/787.290272e3.chunk.js": "/kids-e-commerce-production/static/js/787.290272e3.chunk.js",
     "static/media/crousel2.jpg": "/kids-e-commerce-production/static/media/crousel2.c4418b036b5c24b97ff1.jpg",
     "static/media/crousel3.jpg": "/kids-e-commerce-production/static/media/crousel3.885fd64ff50cf834ead0.jpg",
@@ -38,11 +38,11 @@
     "static/media/Desktop-Animal-2_200x200.webp": "/kids-e-commerce-production/static/media/Desktop-Animal-2_200x200.9265b66570269650903d.webp",
     "index.html": "/kids-e-commerce-production/index.html",
     "main.98a98d48.css.map": "/kids-e-commerce-production/static/css/main.98a98d48.css.map",
-    "main.1abed84a.js.map": "/kids-e-commerce-production/static/js/main.1abed84a.js.map",
+    "main.8c29911f.js.map": "/kids-e-commerce-production/static/js/main.8c29911f.js.map",
     "787.290272e3.chunk.js.map": "/kids-e-commerce-production/static/js/787.290272e3.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.98a98d48.css",
-    "static/js/main.1abed84a.js"
+    "static/js/main.8c29911f.js"
   ]
 }
